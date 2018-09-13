@@ -88,7 +88,8 @@ as jump destination. This is less than perfect, as that means registers are ofte
 A partial mitigation would be to allow "short" jumps with the same "page" of memory, through
 setting just the least significant byte of PC to immediate value. Another hybrid solution
 is to allow jumping to address `A:imm`, that is loading register `A` to high byte of PC,
-and immediate to lower; thus clobbering only one of valuable registers.
+and immediate to lower; thus clobbering only one of valuable registers. All of these
+can be of course parametrized with condition code, such as "jump if carry".
 
 What remains is a number of miscellaneous yet useful instructions, such as setting/clearing
 ALU flags.
