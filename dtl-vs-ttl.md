@@ -67,6 +67,21 @@ the schematic are shown near the left transistor or the right one. On the bottom
 I included table which for wide variation of these two resistances, states simulated delay
 and current consumption.
 
+Here's their plot:
+
+![Delay/current](images/delay_current.png)
+
+It's a remarkably smooth line, given that we varied both resistor values. In fact, a log-log
+graph is a straight line:
+
+![Log-log](images/log_power.png)
+
+The coefficient of the line is roughly -1.2, meaning `delay ^ 1.2 * current` should be about constant.
+The fact that the plot is smooth and consistent across wide range of resistors means we should
+be able to pick any point on the line even if we use just one kind of resistor (2x47k, 2x4.7k, etc.),
+which simplifies things a bit.
+
+
 | X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
 | ------------- | ------------- | ------------- | ------------- |
 |99.0|99.0|3.0|2.1|
