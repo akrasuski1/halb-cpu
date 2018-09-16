@@ -100,7 +100,14 @@ in the good ballpark.
 
 DTL uses 3R, 3D and 1T per inverter and has ~3us rise time. TTL without pullup uses 1R and 2T per inverter
 and has rise on the order of 1us, precise value depending on actual resistor choice. TTL seems
-like a better choice here.
+like a better choice here. 
+
+I tried to recreate the results outside simulator, by soldering
+3 inverters, and they seem to work fine. I measure about 1us of delay on those 3 gates, which
+is considerably more than simulated. I blame the oscilloscope though - first, it adds
+non-negligible capacitance (15pF * 47kOhm = 0.7us), and second, I'm using its calibration signal
+generator as input due to lack of good waveform generator. It seems to have about 2us
+rise time, which may distort my measurements too.
 
 # Table of measurements
 
