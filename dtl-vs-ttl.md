@@ -86,6 +86,16 @@ left one. This is equivalent to setting the right resistor's value to gigaohms a
 same curve. In fact, the results are indistinguishable from the two-resistor ones; and since
 they use less components, they are superior choice in most cases.
 
+After searching the internet for this linear relationship, I stumbled upon
+[power-delay product](https://en.wikipedia.org/wiki/Power%E2%80%93delay_product),
+which is amount of energy to switch state. Apparently for TTL this is about 100pJ in 
+common scenarios. Let's see what we get - a middle point on our curve is 0.72us and
+9.6mA, both per 24 gates. Per 1 gate, that's 0.03us and 0.4mA respectively. After
+multiplying them, we get 0.012nC. Our power supply was 5V, so we multiply by that and
+get 0.06nJ, or 60pJ. That's actually even less than expected! Perhaps our methodology
+was a bit different or LTspice simulation is imperfect, but it's nice to see we're
+in the good ballpark.
+
 # Verdict
 
 DTL uses 3R, 3D and 1T per inverter and has ~3us rise time. TTL without pullup uses 1R and 2T per inverter
