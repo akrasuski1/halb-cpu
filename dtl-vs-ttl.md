@@ -86,6 +86,13 @@ left one. This is equivalent to setting the right resistor's value to gigaohms a
 same curve. In fact, the results are indistinguishable from the two-resistor ones; and since
 they use less components, they are superior choice in most cases.
 
+# Verdict
+
+DTL uses 3R, 3D and 1T per inverter and has ~3us rise time. TTL without pullup uses 1R and 2T per inverter
+and has rise on the order of 1us, precise value depending on actual resistor choice. TTL seems
+like a better choice here.
+
+# Table of measurements
 
 | X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
 | ------------- | ------------- | ------------- | ------------- |
