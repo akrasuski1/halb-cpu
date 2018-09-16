@@ -40,10 +40,30 @@ of DTL into a transistor:
 The top schematic shows a single TTL inverter, which also has asymmetric rise/fall, but the worse
 one is still only 0.4us - much better than DTL. The middle schematic shows effects of joining
 three of them in series - somehow, the delay didn't change too much and is still around 0.5us
-even in case of two inverters undercoming the worse transition. TODO check more?
+even in case of two inverters undercoming the worse transition.
 
 We can save on some resistors though if we are only interested in final result and not the
 intermediate - we can get rid of R2 and R4. This is equivalent to saying we don't use low and
 high voltage as our states, but low voltage or high impedance instead. This somewhat increases
 propagation time though (to around 0.6us).
 
+After stringing together 24 of similar inverters, we can see there is a large delay only
+after the first one, the other seem to switch much faster:
+
+![TTL](images/ttl_24_inv.png)
+
+The most significant difference between the first one and the others is value of high voltage,
+which is 5V for the first and roughly 0.7V for the rest. After reducing input voltage
+accordingly we see that the initial delay decreased. This does not mean we should decrease
+power supply voltage though, just the signal voltage.
+
+The full delay of 24 inverters totals to 1.6us, or roughly 65ns per switch; removing the 
+pullups increases this to 3.2us, or 130us per switch.
+
+## Resistors
+
+There's also the matter of reseistor values. In TTL, there are two types of resistors, which on 
+the schematic are shown near the left transistor or the right one.
+
+| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
+| ------------- | ------------- |
