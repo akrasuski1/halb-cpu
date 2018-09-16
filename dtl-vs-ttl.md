@@ -81,9 +81,29 @@ The fact that the plot is smooth and consistent across wide range of resistors m
 be able to pick any point on the line even if we use just one kind of resistor (2x47k, 2x4.7k, etc.),
 which simplifies things a bit.
 
+Finally, there was also the idea of abandoning the pullup resistor altogether, and use just the
+left one. This is equivalent to setting the right resistor's value to gigaohms and thus follow the
+same curve. In fact, the results are indistinguishable from the two-resistor ones; and since
+they use less components, they are superior choice in most cases.
+
 
 | X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
 | ------------- | ------------- | ------------- | ------------- |
+|-|75  |4.4  |1.3|
+|-|50  |3.0  |2.0|
+|-|30  |1.9  |3.2|
+|-|20  |1.3  |4.8|
+|-|15  |1.1  |6.5|
+|-|10  |0.72 |9.6|
+|-|8   |0.61 |12|
+|-|7   |0.54 |14|
+|-|6   |0.47 |16|
+|-|5   |0.41 |19|
+|-|4   |0.34 |24|
+|-|3   |0.27 |32|
+|-|2   |0.19 |47|
+|-|1.5 |0.16 |63|
+|-|1   |0.12 |94|
 |99.0|99.0|3.0|2.1|
 |99.0|75.0|2.7|2.4|
 |99.0|50.0|2.1|3.2|
