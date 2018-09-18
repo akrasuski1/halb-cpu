@@ -27,26 +27,28 @@ even enough. I wrote a simple simulator that for each combination of control sig
 what is the resulting function (`helpers/sim.cpp`).
 
 It turns out we can achieve all of the functions we need (and some extra) using just 
-`F0`, `F2`, `F4`, `F6`, `F8` and `F10`, with the last two always being equal:
+`F0`, `F2`, `F4`, `F5`, `F6`, `F8` and `F10`:
 
-| Fun | F0 (W) | F2 (X) | F4 (Y) | F6 (Z) | F8 = F10 (MODE) |
-|-----|----|----|----|----|----------|
-|  OR | 0  | 0  | 0  | 1  | 0        |
-| XOR | 0  | 0  | 1  | 1  | 0        |
-| AND | 1  | 1  | 1  | 0  | 0        |
-|   B | 0  | 0  | 0  | 0  | 0        |
-| ADD | 0  | 0  | 1  | 1  | 1        |
-| SUB | 1  | 1  | 1  | 1  | 1        |
-| CLR | 0  | 1  | 1  | 0  | 0        |
-| SET | 0  | 1  | 0  | 1  | 0        |
+| Fun | F0 (X) | F2 (Y) | F4 (Z) | F5 (~selectB) | F6 (~selectAND) | F8 = F10 (MODE) |
+|-----|---|---|---|---|---|---|
+|  OR | 0 | 0 | 0 | 1 | 1 | 0 |
+| XOR | 0 | 0 | 1 | 1 | 1 | 0 |
+| AND | 1 | 1 | 1 | 1 | 0 | 0 |
+|   B | 0 | 0 | 0 | 0 | 1 | 0 |
+| ADD | 0 | 0 | 1 | 1 | 1 | 1 |
+| SUB | 1 | 1 | 1 | 1 | 1 | 1 |
+| SET | 0 | 1 | 0 | 1 | 1 | 0 |
 
 There's also possibility of getting NOR, XNOR and several implications, but they are uncommon enough
-that they will be left unimplemented (they would increase number of control signals). I added CLR
-and SET though, since one of them may be useful during further multiplexing phase.
+that they will be left unimplemented (they would increase number of control signals). We add SET though,
+since it will help in multiplexing later on.
 
-We can further notice that `F8/F10` signal joins the same connections as `Cin`; in other words, if `F8/F10`
+We can further notice that `F8/F10` signal connects to the same gates as `Cin`; in other words, if `F8/F10`
 is set to 0, carry signal doesn't count. ALU can therefore operate in just bitwise mode - incidentally,
 old ALU chip, 74181, also has `MODE` input that switches between arithmetic and logic operations. For this reason
 I decided to call this input `MODE` as well. The same signal may be also reused as "save carry" signal -
-bitwise operations typically don't update the carry flag. The other control signals don't have a simple
-interpretation, so I call them just `W`, `X`, `Y`, `Z`.
+bitwise operations typically don't update the carry flag. 
+
+`F6` is used only for `AND` function, and similarly `F5` for `B`; they get names of `~selectAND` and 
+`~selectB` respectively. The remaining signals don't have a simple interpretation, so they get generic
+`X`, `Y`, `Z` names.
