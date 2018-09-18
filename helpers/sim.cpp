@@ -89,10 +89,10 @@ std::string classify(int result) {
 
     if (bin == "0001") return "AND";
 
-    if (bin == "1100") return "~A";
-    if (bin == "1010") return "~B";
-    if (bin == "0011") return "A";
-    if (bin == "0101") return "B";
+    if (bin == "1100") return "~B";
+    if (bin == "1010") return "~A";
+    if (bin == "0011") return "B";
+    if (bin == "0101") return "A";
 
     if (bin == "1001") return "XNOR";
     if (bin == "0110") return "XOR";
@@ -120,7 +120,7 @@ int main() {
     for (int i = 0; i < (1<<12); i++) {
         auto s = classify(check(i));
         // if (s == "XOR" || s == "ADD" || s == "OR" || s == "SUB" || s == "AND") {
-        if (s == "CLR") {
+        if (s == "B") {
             printf("%s %s\n", bin12(i).c_str(), s.c_str());
         }
     }
