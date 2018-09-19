@@ -17,8 +17,9 @@ with 4 registers, two of which can act as pointer.
 
 RISC-style is the only reasonable way for homemade CPU, since anything more complicated would cause
 the project to grow much too large to be made by hand. As for Harvard vs von Neumann - something akin
-to AVR will be used, that is two distinct memories for program data ("Flash") and second for RAM. These
-will live in the same addressing space though, with high bit distinguishing between the two.
+to AVR or MSP430 will be used, that is two distinct memories for program data ("Flash") and second for RAM. These
+will live in the same addressing space though, with high bit distinguishing between the two,
+and with some instructions only able to operate on specific one of these.
 
 ## Bus width
 
