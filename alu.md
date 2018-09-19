@@ -52,3 +52,7 @@ bitwise operations typically don't update the carry flag.
 `F6` is used only for `AND` function, and similarly `F5` for `B`; they get names of `~selectAND` and 
 `~selectB` respectively. The remaining signals don't have a simple interpretation, so they get generic
 `X`, `Y`, `Z` names.
+
+The final design of main ALU chunk is in `logisim/alu.circ`:
+
+![ALU](images/alu.png)
