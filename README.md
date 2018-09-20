@@ -20,3 +20,4 @@ with 4 registers, two of which can act as pointer; all in TTL logic; each opcode
 - [Opcodes](opcodes.md)
 - [ALU design](alu.md)
 - [Clock generation](clock.md)
+- [Loading program](loading-program.md)
