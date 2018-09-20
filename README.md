@@ -11,7 +11,7 @@ There might be some exceptions, such as clock generation or I/O, but the core sh
 ## TL;DR
 
 ROM and RAM each take half of 16-bit address space with 8-bit data cells; RISC-style ISA
-with 4 registers, two of which can act as pointer.
+with 4 registers, two of which can act as pointer; all in TTL logic.
 
 ## Table of contents
 
