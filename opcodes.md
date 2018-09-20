@@ -37,7 +37,7 @@ STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
 ## Jumps
 
 Jumps can have destination of `H:L` or `PCH:imm` for local jumps. There will be eight condition
-codes, probably the same as MSP430's (todo: check carry behavior though).
+codes, probably the same as MSP430's.
 
 (total: 2x8 = 16)
 
