@@ -2,7 +2,7 @@
 
 The program data is stored on Flash chip, which is connected through a set of pins (and thus detachable).
 It would be nice to have a way to program the chip without using any exernal components, such as computer
-or Arduino. So far I thought of two alternatives:
+or Arduino. So far I thought of a few alternatives:
 
 ## Manual
 
