@@ -39,6 +39,7 @@ It turns out we can achieve all of the functions we need (and some extra) using 
 | SUB | 1 | 1 | 1 | 1 | 1 | 1 |
 | ADX | 1 | 0 | 1 | 1 | 1 | 1 |
 | SBX | 0 | 1 | 1 | 1 | 1 | 1 |
+|  ~A | 0 | 1 | 1 | 1 | 1 | 0 |
 | SET | 0 | 1 | 0 | 1 | 1 | 0 |
 
 There's also possibility of getting NOR, XNOR and several implications, but they are uncommon enough
