@@ -4,6 +4,10 @@ The whole CPU will use a single master clock. Each instruction will take two cyc
 for some instructions that use immediate value. To ensure correct start, some kind of power-on reset
 is required to ignore first cycle or two.
 
+During rising clock edge, every temporary signal will be latched to appropriate registers,
+the rest of the clock cycle is used to propagate new values of registers to calculate
+new temporary values.
+
 The clock will be generated using astable oscillator, at frequency adjustable in some narrow
 range (less than a factor of five or so) by potentiometer. There will be a long chain of
 prescaler units, each dividing frequency by two. The actual number of prescalers used will be
