@@ -28,10 +28,16 @@ Non-two-register:
 
 (total: 4x(~12) = ~48)
 
+## Stores
+
+STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
+
+(total: 4x4 = 16)
+
 ## Jumps
 
 Jumps can have destination of `H:L` or `PCH:imm` for local jumps. There will be eight condition
-codes, the same as MSP430's.
+codes, probably the same as MSP430's (todo: check carry behavior though).
 
 (total: 2x8 = 16)
 
@@ -40,12 +46,6 @@ codes, the same as MSP430's.
 Set/clear C/N/Z/V.
 
 (total: 2x4 = 8)
-
-## Stores
-
-STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
-
-(total: 4x4 = 16)
 
 ## Conclusion
 
