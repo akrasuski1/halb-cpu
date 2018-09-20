@@ -24,8 +24,9 @@ Non-two-register:
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
 - SHR/SAR/RCR/ROR (maybe leave rotates out, they are pretty useless)
 - INC/DEC
+- NOT (xor ff)
 
-(total: 4x(~11) = ~44)
+(total: 4x(~12) = ~48)
 
 ## Jumps
 
@@ -37,7 +38,6 @@ codes, the same as MSP430's.
 ## Flags
 
 Set/clear C/N/Z/V.
-(maybe FLAGS <-> reg ? Or maybe treat FLAGS as SFR?)
 
 (total: 2x4 = 8)
 
@@ -49,7 +49,7 @@ STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
 
 ## Conclusion
 
-As for what is written now, there are 244 possible opcodes, which uses most of opcode space, but
+As for what is written now, there are 248 possible opcodes, which uses most of opcode space, but
 leaves a bit for possible future expansion.
 
 Some of the opcodes may seem redundant (like `AND A, A`), but they can be treated as elaborate NOPs.
