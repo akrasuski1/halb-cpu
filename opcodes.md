@@ -22,10 +22,9 @@ There are 4 registers, so they take 4x4 = 16 opcodes:
 Non-two-register:
 - LDI (load immediate)
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
-- LOAD SFRn (todo: what SFRs? I/O ports etc.)
 - SHR/SAR/RCR/ROR
 
-(total: 4x(~13) = ~52)
+(total: 4x(~9) = ~36)
 
 ## Jumps
 
@@ -44,15 +43,13 @@ Set/clear C/N/Z/V.
 ## Stores
 
 STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
-STR SFRn, A/B/H/L
 
-(total: 4x4 + 4x(~4) = ~32)
+(total: 4x4 = 16)
 
 ## Conclusion
 
-As for what is written now, there are 268 possible opcdes, which is too much given we have only
-256 opcodes available. We may however map SFRs in RAM, which would free us (and simplify ISA,
-actually) roughly 32 opcodes (LOAD/STR SFRn).
+As for what is written now, there are 236 possible opcdes, which uses most of opcode space, but
+leaves a bit for possible future expansion.
 
 Some of the opcodes may seem redundant (like `AND A, A`), but they can be treated as elaborate NOPs.
-For ismplicity, we do not special case them.
+For simplicity they are not special cased.
