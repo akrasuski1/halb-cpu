@@ -28,7 +28,7 @@ Non-two-register:
 
 (total: 4x(~12) = ~48)
 
-## Stores
+## Memory stores
 
 STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
 
