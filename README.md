@@ -15,8 +15,8 @@ with 4 registers, two of which can act as pointer.
 
 ## Table of contents
 
-[General issues](general.md)
-[Transistor technology (DTL vs TTL)](dtl-vs-ttl.md)
-[Opcodes](opcodes.md)
-[ALU design](alu.md)
-[Clock generation](clock.md)
+- [General issues](general.md)
+- [Transistor technology (DTL vs TTL)](dtl-vs-ttl.md)
+- [Opcodes](opcodes.md)
+- [ALU design](alu.md)
+- [Clock generation](clock.md)
