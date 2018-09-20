@@ -37,11 +37,15 @@ It turns out we can achieve all of the functions we need (and some extra) using 
 |   B | 0 | 0 | 0 | 0 | 1 | 0 |
 | ADD | 0 | 0 | 1 | 1 | 1 | 1 |
 | SUB | 1 | 1 | 1 | 1 | 1 | 1 |
+| ADX | 1 | 0 | 1 | 1 | 1 | 1 |
+| SBX | 0 | 1 | 1 | 1 | 1 | 1 |
 | SET | 0 | 1 | 0 | 1 | 1 | 0 |
 
 There's also possibility of getting NOR, XNOR and several implications, but they are uncommon enough
 that they will be left unimplemented (they would increase number of control signals). We add SET though,
-since it will help in multiplexing later on.
+since it will help in multiplexing later on. There's also ADX and SBX, which are simple operations
+that are equivalent to ADD and SUB with B hardwired to zero. This is useful for implementing INC
+and DEC instructions.
 
 We can further notice that `F8/F10` signal connects to the same gates as `Cin`; in other words, if `F8/F10`
 is set to 0, carry signal doesn't count. ALU can therefore operate in just bitwise mode - incidentally,
