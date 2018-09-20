@@ -22,9 +22,10 @@ There are 4 registers, so they take 4x4 = 16 opcodes:
 Non-two-register:
 - LDI (load immediate)
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
-- SHR/SAR/RCR/ROR
+- SHR/SAR/RCR/ROR (maybe leave rotates out, they are pretty useless)
+- INC/DEC
 
-(total: 4x(~9) = ~36)
+(total: 4x(~11) = ~44)
 
 ## Jumps
 
@@ -48,7 +49,7 @@ STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
 
 ## Conclusion
 
-As for what is written now, there are 236 possible opcdes, which uses most of opcode space, but
+As for what is written now, there are 244 possible opcodes, which uses most of opcode space, but
 leaves a bit for possible future expansion.
 
 Some of the opcodes may seem redundant (like `AND A, A`), but they can be treated as elaborate NOPs.
