@@ -17,6 +17,9 @@ There are 4 registers, so they take 4x4 = 16 opcodes:
 - CMP (same as SUB, but doesn't store)
 - BIT (same as AND, but doesn't store)
 
+(a good idea might be to use immediate value as source, sacrificing one of the other registers -
+probably H)
+
 (total: 16x10 = 160)
 
 Non-two-register:
