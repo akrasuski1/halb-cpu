@@ -5,7 +5,8 @@ This section is incomplete. What follows is dump of my current ideas.
 ## Register stores:
 
 Most of these have structure of `X OP Y`, which sets new value of `X` register to `OP(X, Y)`.
-There are 4 registers, so they take 4x4 = 16 opcodes:
+There are 4 registers, so they take 4x4 = 16 opcodes each. If H were to be used as source,
+instead we use immediate value.
 - ADC (add with carry)
 - ADD (add without carry) - can be easily emulated, so may be dropped
 - SBC (subtract with carry)
@@ -17,19 +18,15 @@ There are 4 registers, so they take 4x4 = 16 opcodes:
 - CMP (same as SUB, but doesn't store)
 - BIT (same as AND, but doesn't store)
 
-(a good idea might be to use immediate value as source, sacrificing one of the other registers -
-probably H)
-
 (total: 16x10 = 160)
 
 Non-two-register:
-- LDI (load immediate)
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
 - SHR/SAR/RCR/ROR (maybe leave rotates out, they are pretty useless)
 - INC/DEC
 - NOT (XOR 0xFF - useful on its own, and to make NEG using identity `-x == (x ^ 0xff) + 1`)
 
-(total: 4x(~12) = ~48)
+(total: 4x(~11) = ~44)
 
 ## Memory stores
 
@@ -52,7 +49,7 @@ Set/clear C/N/Z/V.
 
 ## Conclusion
 
-As for what is written now, there are 248 possible opcodes, which uses most of opcode space, but
+As for what is written now, there are 244 possible opcodes, which uses most of opcode space, but
 leaves a bit for possible future expansion.
 
 Some of the opcodes may seem redundant (like `AND A, A`), but they can be treated as elaborate NOPs.
