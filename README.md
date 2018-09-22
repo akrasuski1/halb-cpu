@@ -1,10 +1,7 @@
 # HALB-CPU
 
-This is a design document for simple, yet reasonably functional CPU.
-
-# Design assumptions and decisions
-
-The main idea is to make a CPU that is possible to create from scratch in home. By "from scratch" I mean
+This is a design document for simple, yet reasonably functional CPU that is possible to build from
+scratch in home. By "from scratch" I mean
 using nothing more than discrete transistors, diodes, resistors and whatever needed for connecting them.
 There might be some exceptions, such as clock generation or I/O, but the core should follow these principles.
 
