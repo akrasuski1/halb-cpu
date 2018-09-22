@@ -96,6 +96,16 @@ get 0.06nJ, or 60pJ. That's actually even less than expected! Perhaps our method
 was a bit different or LTspice simulation is imperfect, but it's nice to see we're
 in the good ballpark.
 
+## Update ad. one resistor
+
+It seems we cannot use just a single resistor (the one on the left). The gate on its own would work
+okay, but when used as NAND with at least two inputs, there is slight leakage of voltage between
+the inputs - see [simulation](https://tinyurl.com/y7euyeav). When using no pullup resistor at all,
+that meant that a single low input would infect other inputs with low voltage - and they could be
+used elsewhere, and would otherwise be high/floating. With the pullup, the "infection" would still
+happen, but it would not be enough to cause trouble, since the leaking voltage has quite high impedance
+(on the order of base resistor value I think, though LTspice simulation shows about 4 times that).
+
 # Verdict
 
 DTL uses 3R, 3D and 1T per inverter and has ~3us rise time. TTL without pullup uses 1R and 2T per inverter
