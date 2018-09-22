@@ -11,7 +11,7 @@ good.
 ![D latch](http://www.play-hookey.com/digital/alt_flip_flops/images/denandff100.png)
 
 It has a total of 6 NANDs, all of which are 2-input except for one 3-input. In TTL, that gives us
-12 resistors and 19 transistors.
+6 resistors and 19 transistors.
 
 ## Multiplexers
 
@@ -25,4 +25,4 @@ It would be better to design a "8-bit inverted buffer", i.e. 8 NANDs with one of
 inputs joined together as enables signal; and a 8-bit inverter on the right.
 
 Inverted buffer would have 8 2-input NANDs, i.e. 16 resistors and 24 transistors;
-8-bit inverter - 8 1-input NANDs, i.e. 16 resistors and 16 transistors.
+8-bit inverter - 8 1-input NANDs, i.e. 8 resistors and 16 transistors.
