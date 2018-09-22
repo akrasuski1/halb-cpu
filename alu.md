@@ -61,3 +61,7 @@ bitwise operations typically don't update the carry flag.
 The final design of main ALU chunk is in `logisim/alu.circ`:
 
 ![ALU](images/alu.png)
+
+Actually, there's one more hacky improvement to be done: gates 3, 7 and 11 all have inputs that
+connect to no other inputs. That means NANDs can be changed to NOTs by wire-ANDing all their inputs
+together, saving on one transistor per each gate (3 total).
