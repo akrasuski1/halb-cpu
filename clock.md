@@ -1,7 +1,8 @@
 # Clock
 
-The whole CPU will use a single master clock. Each instruction will take two cycles, to accomodate
-for some instructions that use immediate value. To ensure correct start, some kind of power-on reset
+The whole CPU will use a single master clock. Most instructions will take a single cycle,
+except of those that have immediate value, which take two. 
+To ensure correct start, some kind of power-on reset
 is required to ignore first cycle or two.
 
 During rising clock edge, every temporary signal will be latched to appropriate registers,
