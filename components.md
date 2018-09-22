@@ -13,7 +13,7 @@ good on the first sight.
 It has a total of 6 NANDs, all of which are 2-input except for one 3-input. In TTL, that gives us
 6 resistors and 19 transistors.
 
-There is a pretty good criticism of this style of registers ![here](http://www.megaprocessor.com/GBU_flip_flops.html).
+There is a pretty good criticism of this style of registers [here](http://www.megaprocessor.com/GBU_flip_flops.html).
 In short, they are prone to data race - say we want to make a T flip flop from D by connecting negative
 output to the input. Then, when output switches, input immediately changes too, possibly violating
 hold times constraints. I think this issue persists even in proposed master-slave flip-flop
