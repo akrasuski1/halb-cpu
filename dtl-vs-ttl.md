@@ -30,6 +30,16 @@ I asked on Stack Overflow for some details.
 The third schematic is my attempt to mitigate the situation by introducing extra backwards diode D3.
 This helped a lot, but there's still asymmetry between rise (3us) and fall (0.3us).
 
+### Improvement
+
+The circuit above was inspired by Wikipedia's, but the base resistor is not needed - in fact, it 
+contributes to most of the slowdown. Here's schematic and simulation without it (note changed
+timescale):
+
+![dtl4](images/dtl4.png)
+
+The exact measurements will follow after TTL description to compare the two.
+
 ## TTL
 
 More modern alternative is TTL, which exchanges the strange-looking two diode configuration
@@ -84,7 +94,7 @@ which simplifies things a bit.
 Finally, there was also the idea of abandoning the pullup resistor altogether, and use just the
 left one. This is equivalent to setting the right resistor's value to gigaohms and thus follow the
 same curve. In fact, the results are indistinguishable from the two-resistor ones; and since
-they use less components, they are superior choice in most cases.
+they use less components, they seem to be superior.
 
 After searching the internet for this linear relationship, I stumbled upon
 [power-delay product](https://en.wikipedia.org/wiki/Power%E2%80%93delay_product),
@@ -108,7 +118,9 @@ happen, but it would not be enough to cause trouble, since the leaking voltage h
 
 # Verdict
 
-DTL uses 3R, 3D and 1T per inverter and has ~3us rise time. TTL without pullup uses 1R and 2T per inverter
+TODO:rewrite
+
+DTL uses 2R, 3D and 1T per inverter and has ~3us rise time. TTL uses 2R and 2T per inverter
 and has rise on the order of 1us, precise value depending on actual resistor choice. TTL seems
 like a better choice here. 
 
@@ -119,7 +131,7 @@ non-negligible capacitance (15pF * 47kOhm = 0.7us), and second, I'm using its ca
 generator as input due to lack of good waveform generator. It seems to have about 2us
 rise time, which may distort my measurements too.
 
-# Table of measurements
+# Table of measurements (TTL)
 
 | X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
 | ------------- | ------------- | ------------- | ------------- |
