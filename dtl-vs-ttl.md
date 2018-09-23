@@ -124,8 +124,6 @@ I conducted the same experiment on DTL inverters:
 
 # Verdict
 
-TODO:rewrite
-
 DTL uses 2R, 3D and 1T per inverter, while TTL uses 2R and 2T per inverter. DTL
 has shorter delays for sensible current values. DTL also isolates inputs from other
 inputs. All things considered, I think I'll go with DTL.
