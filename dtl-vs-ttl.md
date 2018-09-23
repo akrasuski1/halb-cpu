@@ -116,15 +116,23 @@ used elsewhere, and would otherwise be high/floating. With the pullup, the "infe
 happen, but it would not be enough to cause trouble, since the leaking voltage has quite high impedance
 (on the order of base resistor value I think, though LTspice simulation shows about 4 times that).
 
+# DTL measurements
+
+I conducted the same experiment on DTL inverters:
+
+![DTL](images/dtl-graph.png)
+
 # Verdict
 
 TODO:rewrite
 
-DTL uses 2R, 3D and 1T per inverter and has ~3us rise time. TTL uses 2R and 2T per inverter
-and has rise on the order of 1us, precise value depending on actual resistor choice. TTL seems
-like a better choice here. 
+DTL uses 2R, 3D and 1T per inverter, while TTL uses 2R and 2T per inverter. DTL
+has shorter delays for sensible current values. DTL also isolates inputs from other
+inputs. All things considered, I think I'll go with DTL.
 
-I tried to recreate the results outside simulator, by soldering
+## Real life
+
+I tried to recreate the TTL results outside simulator, by soldering
 3 inverters, and they seem to work fine. I measure about 1us of delay on those 3 gates, which
 is considerably more than simulated. I blame the oscilloscope though - first, it adds
 non-negligible capacitance (15pF * 47kOhm = 0.7us), and second, I'm using its calibration signal
@@ -242,3 +250,58 @@ rise time, which may distort my measurements too.
 |1.5|2.0|0.11|117.0|
 |1.5|1.5|0.1|135.0|
 
+# Table of measurements (DTL)
+
+(X - pullup)
+
+| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
+| ------------- | ------------- | ------------- | ------------- |
+| 47.0 | 47.0 | 1.3 | 3.6 |
+| 47.0 | 22.0 | 0.9 | 5.9 |
+| 47.0 | 15.0 | 0.75 | 8.0 |
+| 47.0 | 10.0 | 0.57 | 11.0 |
+| 47.0 | 7.5 | 0.47 | 15.0 |
+| 47.0 | 5.0 | 0.36 | 21.0 |
+| 47.0 | 3.0 | 0.25 | 34.0 |
+| 22.0 | 47.0 | 0.87 | 4.9 |
+| 22.0 | 22.0 | 0.68 | 7.5 |
+| 22.0 | 15.0 | 0.58 | 9.6 |
+| 22.0 | 10.0 | 0.48 | 13.0 |
+| 22.0 | 7.5 | 0.4 | 16.0 |
+| 22.0 | 5.0 | 0.32 | 23.0 |
+| 22.0 | 3.0 | 0.23 | 36.0 |
+| 15.0 | 47.0 | 0.68 | 6.3 |
+| 15.0 | 22.0 | 0.57 | 8.8 |
+| 15.0 | 15.0 | 0.49 | 11.0 |
+| 15.0 | 10.0 | 0.41 | 14.0 |
+| 15.0 | 7.5 | 0.35 | 18.0 |
+| 15.0 | 5.0 | 0.3 | 24.0 |
+| 15.0 | 3.0 | 0.22 | 37.0 |
+| 10.0 | 47.0 | 0.53 | 8.4 |
+| 10.0 | 22.0 | 0.45 | 11.0 |
+| 10.0 | 15.0 | 0.39 | 13.0 |
+| 10.0 | 10.0 | 0.34 | 16.0 |
+| 10.0 | 7.5 | 0.31 | 20.0 |
+| 10.0 | 5.0 | 0.26 | 26.0 |
+| 10.0 | 3.0 | 0.21 | 40.0 |
+| 7.5 | 47.0 | 0.43 | 10.0 |
+| 7.5 | 22.0 | 0.36 | 13.0 |
+| 7.5 | 15.0 | 0.34 | 15.0 |
+| 7.5 | 10.0 | 0.3 | 18.0 |
+| 7.5 | 7.5 | 0.26 | 22.0 |
+| 7.5 | 5.0 | 0.24 | 28.0 |
+| 7.5 | 3.0 | 0.2 | 42.0 |
+| 5.0 | 47.0 | 0.31 | 14.0 |
+| 5.0 | 22.0 | 0.28 | 17.0 |
+| 5.0 | 15.0 | 0.26 | 19.0 |
+| 5.0 | 10.0 | 0.24 | 23.0 |
+| 5.0 | 7.5 | 0.22 | 26.0 |
+| 5.0 | 5.0 | 0.2 | 33.0 |
+| 5.0 | 3.0 | 0.16 | 46.0 |
+| 3.0 | 47.0 | 0.22 | 22.0 |
+| 3.0 | 22.0 | 0.2 | 25.0 |
+| 3.0 | 15.0 | 0.19 | 27.0 |
+| 3.0 | 10.0 | 0.17 | 31.0 |
+| 3.0 | 7.5 | 0.16 | 35.0 |
+| 3.0 | 5.0 | 0.15 | 42.0 |
+| 3.0 | 3.0 | 0.14 | 54.0 |
