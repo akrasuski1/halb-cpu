@@ -19,6 +19,8 @@ instead we use immediate value.
 - BIT (same as AND, but doesn't store)
 
 (total: 16x10 = 160)
+(another idea would be to allow src to be [0:imm] as well, but remove ADD and SUB, to get 20x8=160
+instructions, or use [0:imm] instead of L as src)
 
 Non-two-register:
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
