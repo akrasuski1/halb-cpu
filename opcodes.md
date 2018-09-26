@@ -22,11 +22,12 @@ instead we use immediate value.
 
 Non-two-register:
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
+- LPM [H:L] (load program memory)
 - SHR/SAR/RCR/ROR (maybe leave rotates out, they are pretty useless)
 - INC/DEC
 - NOT (XOR 0xFF - useful on its own, and to make NEG using identity `-x == (x ^ 0xff) + 1`)
 
-(total: 4x(~11) = ~44)
+(total: 4x12 = ~48)
 
 ## Memory stores
 
@@ -49,7 +50,7 @@ Set/clear C/N/Z/V.
 
 ## Conclusion
 
-As for what is written now, there are 244 possible opcodes, which uses most of opcode space, but
+As for what is written now, there are 248 possible opcodes, which uses most of opcode space, but
 leaves a bit for possible future expansion.
 
 Some of the opcodes may seem redundant (like `AND A, A`), but they can be treated as elaborate NOPs.
