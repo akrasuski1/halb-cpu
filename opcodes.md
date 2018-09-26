@@ -31,7 +31,7 @@ Non-two-register:
 
 ## Memory stores
 
-STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/H/L
+STR [H:L]/[0:imm]/[imm:L]/[0:L], A/B/imm/L
 
 (total: 4x4 = 16)
 
