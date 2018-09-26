@@ -22,7 +22,7 @@ instead we use immediate value.
 
 Non-two-register:
 - LOAD [H:L]/[0:imm]/[imm:L]/[0:L]
-- LPM [H:L] (load program memory)
+- LPM [H:L] (load program memory; maybe leave this one out, since it complicates 16-bit I-bus)
 - SHR/SAR/RCR/ROR (maybe leave rotates out, they are pretty useless)
 - INC/DEC
 - NOT (XOR 0xFF - useful on its own, and to make NEG using identity `-x == (x ^ 0xff) + 1`)
