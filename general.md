@@ -4,9 +4,8 @@
 
 RISC-style is the only reasonable way for homemade CPU, since anything more complicated would cause
 the project to grow much too large to be made by hand. As for Harvard vs von Neumann - something akin
-to AVR or MSP430 will be used, that is two distinct memories for program data ("Flash") and second for RAM. 
-These will live in the same addressing space though (like in MSP430), with high bit distinguishing the two,
-and with some instructions only able to operate on specific one of these (like in AVR). There will be
+to AVR will be used, that is two distinct memories for program data ("Flash") and second for RAM. 
+There will be some instructions able to fetch from ROM though (like in AVR). There will be
 some small space (perhaps 16 addresses) at the lowest addresses, mapped to I/O and SFRs.
 
 ## Bus width
@@ -21,7 +20,7 @@ is still useful enough (as proven by AVR).
 
 ## Registers
 
-The most obvious register is Program Counter, or PC henceforth. Due to address size, it has to be 
+The most obvious register is Program Counter, or PC. Due to address size, it has to be 
 16-bit.
 
 As all RISCs, there will be general purpose registers too. Two is the minimum useful number of registers
