@@ -22,7 +22,7 @@ is still useful enough (as proven by AVR).
 ## Registers
 
 The most obvious register is Program Counter, or PC henceforth. Due to address size, it has to be 
-15-bit.
+16-bit.
 
 As all RISCs, there will be general purpose registers too. Two is the minimum useful number of registers
 to perform any calculation more advanced than pure accumulation. There is problem with memory writing
