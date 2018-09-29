@@ -10,11 +10,14 @@ aadda001
 aadda010
 aadda011
 aadda100
+     sss
 ```
 
 dd - destination register: 00 - H, 01 - L, 10 - A, 11 - B.
+
 aaa - opcode: 000 - ADD, 001 - MOV, 010 - SUB, 011 - CMP, 100 - OR, 101 - XOR, 110 - AND, 111 - BIT.
-last three bits - source: 000 - A, 001 - B, 010 - L, 011 - imm, 100 - @imm.
+
+sss - source: 000 - A, 001 - B, 010 - L, 011 - imm, 100 - @imm.
 
 ADD and SUB always take carry into account, CMP doesn't. CMP and BIT are carryless SUB and AND, except
 without storing to destination (flags only). All instructions except MOV store all flags.
@@ -28,6 +31,7 @@ aarr0101
 ```
 
 aa - opcode: 00 - RCR, 01 - ACR, 10 - INC, 11 - DEC.
+
 rr - register: 00 - H, 01 - L, 10 - A, 11 - B.
 
 ## Load/store
@@ -39,7 +43,9 @@ aarr011s
 ```
 
 aa - address: 00 - [H:L], 01 - [0:imm], 10 - [imm:L], 11 - [0:L]
+
 rr - register: 00 - H, 01 - L, 10 - A, 11 - B.
+
 s - load/store: 0 - load, 1 - store.
 
 ## Jump
@@ -51,6 +57,7 @@ accc1101
 ```
 
 a - address: 0 - [H:L], 1 - [PCH:imm]
+
 ccc - condition: like in MSP430.
 
 ## Flags
@@ -62,6 +69,7 @@ ccc - condition: like in MSP430.
 ```
 
 s - clear/set: 0 - clear, 1 - set
+
 ff - flag: TODO order
 
 ## Call
@@ -86,6 +94,7 @@ ff - flag: TODO order
 ```
 
 (ret imm: PC <- H:L; reg <- imm)
+
 rr - 01: L, 10: A, 11: B.
 
 ## Reserved
