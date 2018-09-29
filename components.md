@@ -24,7 +24,8 @@ it a bit, but still, the propagation delays will likely make the hold time long 
 
 There is one pretty serious issue with this kind of flip-flop though: as far as I can tell, there is
 no easy way to add "don't write" signal (i.e. ignore clock rising edge while "don't write" is high).
-You cannot just AND clock line with "write", since the rising edge will still appear.
+You cannot just AND clock line with "write", since the rising edge will still appear upon releasing
+"don't write" back to high.
 The obvious, but pretty large solution is to add another multiplexer before the register,
 loading either `D`, or `Q` depending on `write`.
 
