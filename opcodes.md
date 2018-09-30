@@ -30,7 +30,7 @@ without storing to destination (flags only). All instructions except MOV store a
 aarr0101
 ```
 
-aa - opcode: 00 - RCR, 01 - ACR, 10 - INC, 11 - DEC.
+aa - opcode: 00 - INC, 01 - DEC, 10 - RCR, 11 - ASR.
 
 rr - register: 00 - H, 01 - L, 10 - A, 11 - B.
 
