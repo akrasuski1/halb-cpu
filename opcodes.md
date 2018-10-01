@@ -2,7 +2,7 @@
 
 Opcode map:
 
-![map](images/opcodes.png)
+![map](images/opcode_map.png)
 
 ## ALU2
 
