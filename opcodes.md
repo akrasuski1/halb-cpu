@@ -1,5 +1,9 @@
 # Opcodes
 
+Opcode map:
+
+![map](images/opcodes.png)
+
 ## ALU2
 
 ```
