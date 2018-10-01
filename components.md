@@ -47,8 +47,10 @@ Inverted buffer would have 8 2-input NANDs, i.e. 8 transistors, 16 resistors and
 
 We will use many boards, and most of them will be bit slices of higher-level components - for example,
 8-bit register will consist of 8 smaller boards. It seems like a good idea to have a common way of connecting
-boards to main one - right now, I'm considering simple goldpins. In my experience,
-they occasionally break contact, and I really don't want that, I've heard good words about
-those with [round holes](https://www.google.pl/search?q=round+pin+headers&client=ubuntu&hs=9Sv&source=lnms&tbm=isch&sa=X&ved=0ahUKEwii2LSO69bdAhVCXiwKHWYOBL84ChD8BQgOKAE&biw=1920&bih=945) though.
+boards to main one. I lean towards making a "backplane" of sorts, a main master board of the component,
+with several sockets to which slices will be perpendicularly plugged.
+I thought about using [round holes goldpins](https://www.google.pl/search?q=round+pin+headers&client=ubuntu&hs=9Sv&source=lnms&tbm=isch&sa=X&ved=0ahUKEwii2LSO69bdAhVCXiwKHWYOBL84ChD8BQgOKAE&biw=1920&bih=945), since they generally make better connections in my experience,
+but they don't seem to have bent versions and square ones don't fit to round sockets. I guess
+I'll stay with usual rectangular then, hoping for best.
 
 As for interconnecting components (register to multiplexer, etc.), I think I'll use IDC plugs.
