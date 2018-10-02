@@ -65,12 +65,12 @@ int disassemble(uint8_t* rom, char* str) {
 		const char* cond[] = {"JNE", "JE", "JNC", "JC", "JN", "JGE", "JL", "JMP"};
 		str += sprintf(str, "%s ", cond[ccc]);
 		if (op & 0x80) {
-			sprintf(str, "H:L");
-			return 1;
-		}
-		else {
 			sprintf(str, "PCH:%02x", imm);
 			return 2;
+		}
+		else {
+			sprintf(str, "H:L");
+			return 1;
 		}
 	}
 	else if (last4 == 0xf) {
