@@ -16,7 +16,7 @@ their internal wiring with one more NAND to get `Cout` signal. Since we want to 
 as well, we have to allow inverting the `B` signal. This is equivalent to adding extra
 `invertB` control signal and xoring it with `B`, using another 4 NAND gates:
 
-![ADD-SUB](images/addsub.png)
+![ADD-SUB](images/addsub.png?raw=true)
 
 Here, I split `invertB` into two separate signals, `F0` and `F2`. This doesn't add any transistors,
 just an extra I/O port.
@@ -60,7 +60,7 @@ bitwise operations typically don't update the carry flag.
 
 The final design of main ALU chunk is in `logisim/alu.circ`:
 
-![ALU](images/alu.png)
+![ALU](images/alu.png?raw=true)
 
 Actually, there's one more hacky improvement to be done: gates 3, 7 and 11 all have inputs that
 connect to no other inputs. That means NANDs can be changed to NOTs by wire-ANDing all their inputs

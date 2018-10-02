@@ -19,7 +19,7 @@ acting as inverter and amplifier; and a more complicated one, which uses differe
 To keep things simple, I will use inverters instead of NANDs or NORs - here are the schematics along
 with their simulations:
 
-![DTL](images/dtl.png)
+![DTL](images/dtl.png?raw=true)
 
 Top two schematics are the usual ones you can find on the internet, but as you can see, they
 have terrible rise times (for used 47k resistor, that's ~50us). This is due to Miller effect,
@@ -36,7 +36,7 @@ The circuit above was inspired by Wikipedia's, but the base resistor is not need
 contributes to most of the slowdown. Here's schematic and simulation without it (note changed
 timescale):
 
-![dtl4](images/dtl4.png)
+![dtl4](images/dtl4.png?raw=true)
 
 The exact measurements will follow after TTL description to compare the two.
 
@@ -45,7 +45,7 @@ The exact measurements will follow after TTL description to compare the two.
 More modern alternative is TTL, which exchanges the strange-looking two diode configuration
 of DTL into a transistor:
 
-![TTL](images/ttl.png)
+![TTL](images/ttl.png?raw=true)
 
 The top schematic shows a single TTL inverter, which also has asymmetric rise/fall, but the worse
 one is still only 0.4us - much better than DTL. The middle schematic shows effects of joining
@@ -60,7 +60,7 @@ propagation time though (to around 0.6us).
 After stringing together 24 of similar inverters, we can see there is a large delay only
 after the first one, the other seem to switch much faster:
 
-![TTL](images/ttl_24_inv.png)
+![TTL](images/ttl_24_inv.png?raw=true)
 
 The most significant difference between the first one and the others is value of high voltage,
 which is 5V for the first and roughly 0.7V for the rest. After reducing input voltage
@@ -79,12 +79,12 @@ and current consumption.
 
 Here's their plot:
 
-![Delay/current](images/delay_current.png)
+![Delay/current](images/delay_current.png?raw=true)
 
 It's a remarkably smooth line, given that we varied both resistor values. In fact, a log-log
 graph is a straight line:
 
-![Log-log](images/log_power.png)
+![Log-log](images/log_power.png?raw=true)
 
 The coefficient of the line is roughly -1.2, meaning `delay ^ 1.2 * current` should be about constant.
 The fact that the plot is smooth and consistent across wide range of resistors means we should
@@ -120,7 +120,7 @@ happen, but it would not be enough to cause trouble, since the leaking voltage h
 
 I conducted the same experiment on DTL inverters:
 
-![DTL](images/dtl-graph.png)
+![DTL](images/dtl-graph.png?raw=true)
 
 # Verdict
 

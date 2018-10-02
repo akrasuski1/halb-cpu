@@ -23,4 +23,4 @@ in about 24 T flip-flops.
 design of prescaler seems to be commonly used, and is relatively low on components
 (one alternative is using D-flip-flop, which has 6 NANDs):
 
-![prescaler](images/prescaler.png)
+![prescaler](images/prescaler.png?raw=true)

@@ -34,7 +34,7 @@ loading either `D`, or `Q` depending on `write`.
 Since we represent high signal as pullup or lack of strong low signal, we can use simple connection
 as wired-AND gate.
 
-![mux](images/mux.png)
+![mux](images/mux.png?raw=true)
 
 The output of the 2-bit decoder on the schematic acts as an enable signal on each of the inputs.
 It would be better to design a "8-bit inverted buffer", i.e. 8 NANDs with one of the
