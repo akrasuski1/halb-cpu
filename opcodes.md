@@ -60,7 +60,7 @@ s - load/store: 0 - load, 1 - store.
 accc1101
 ```
 
-a - address: 0 - [PCH:imm], 1 - [H:L]
+a - address: 0 - [H:L], 1 - [PCH:imm]
 
 ccc - condition: like in MSP430.
 
