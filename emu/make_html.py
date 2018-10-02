@@ -5,6 +5,7 @@ with open("opcodes.html", "w") as f:
     f.write("<html>" + """
     <style>
 body {
+    background-color: #ffffff;
     font-family:monospace;
 }
 table {
