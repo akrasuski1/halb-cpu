@@ -7,7 +7,12 @@ is required to ignore first cycle or two.
 
 During rising clock edge, every temporary signal will be latched to appropriate registers,
 the rest of the clock cycle is used to propagate new values of registers to calculate
-new temporary values.
+new temporary values. The only time that clock value matters other than its rising edge,
+is when storing data to RAM. Since most of RAM chips are level-triggered, if we were to
+output the Write Enable signal as soon as we decode the instruction, we would risk
+not having address ready yet and thus writing in bogus location. For that reason,
+Write Enable is AND-ed with inverted clock (i.e. write happens in second half of the cycle,
+when address and data should be long since calculated).
 
 The clock will be generated using astable oscillator, at frequency adjustable in some narrow
 range (less than a factor of five or so) by potentiometer. There will be a long chain of
