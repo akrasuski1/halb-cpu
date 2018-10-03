@@ -43,6 +43,10 @@ inputs joined together as enables signal; and a 8-bit inverter on the right.
 Inverted buffer would have 8 2-input NANDs, i.e. 8 transistors, 16 resistors and 40 diodes;
 8-bit inverter - 8 1-input NANDs, i.e. 8 transistors, 16 resistors and 24 diodes.
 
+There's a trick way to save the inverter on register store multiplexers: simply invert logic
+of registers (skip inverter before register, thus feeding inverted value; but use negated output
+of register in place of normal. Keep in mind asynchronous set/reset have to be changed too though).
+
 ## Connections
 
 We will use many boards, and most of them will be bit slices of higher-level components - for example,
