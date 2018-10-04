@@ -61,7 +61,7 @@ table, th, td {
 
         f.write("  <td%s>" % cl)
         open("/tmp/bin", "wb").write(chr(i) + chr(0xee))
-        out = subprocess.check_output(["./disas", "/tmp/bin"])
+        out = subprocess.check_output(["bin/disas", "/tmp/bin"])
         out = out.splitlines()[0].split("]", 1)[1].strip()
         f.write("<b>{:02X}</b><br/>".format(i) + out)
         f.write("</td>\n")

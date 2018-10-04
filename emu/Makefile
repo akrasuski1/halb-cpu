@@ -1,4 +1,4 @@
 
 
-disas: disas.c
-	g++ disas.c -o disas
+bin/disas: src/disas.c src/common.c
+	gcc $^ -o $@

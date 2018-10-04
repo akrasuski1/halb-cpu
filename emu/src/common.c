@@ -1,53 +1,8 @@
+#include "common.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
-
-#define err(...) do { printf(__VA_ARGS__); exit(1); } while (0)
-
-uint8_t rom[100000];
-
-typedef enum opcode_type {
-	OP_RESERVED, OP_ALU2, OP_ALU1, OP_LOAD, OP_STORE, OP_JUMP, OP_CALL, OP_RETX, OP_FLAG,
-} opcode_type;
-
-typedef enum alu1_type {
-	ALU1_INC, ALU1_DEC, ALU1_RCR, ALU1_ASR,
-} alu1_type;
-
-typedef enum alu2_type {
-	ALU2_ADD, ALU2_MOV, ALU2_SUB, ALU2_CMP, ALU2_OR, ALU2_XOR, ALU2_AND, ALU2_BIT,
-} alu2_type;
-
-typedef enum operand_type {
-	OPER_NONE, OPER_REG, OPER_IMM, OPER_MEM_IMM, OPER_MEM_HL, OPER_MEM_IMM_L, 
-	OPER_MEM_L, OPER_PCH_IMM, OPER_HL, OPER_FLAG,
-} operand_type;
-
-typedef enum reg_type {
-	REG_NONE, REG_H, REG_L, REG_A, REG_B,
-} reg_type;
-
-typedef enum condition_type {
-	COND_NE, COND_E, COND_NC, COND_C, COND_N, COND_GE, COND_L, COND_1,
-} condition_type;
-
-typedef struct operand_t {
-	operand_type type;
-	reg_type reg;
-	uint8_t imm;
-} operand_t;
-
-typedef struct opcode_t {
-	opcode_type type;
-	union {
-		alu1_type alu1;
-		alu2_type alu2;
-		condition_type cond;
-	};
-	operand_t dst;
-	operand_t src;
-} opcode_t;
 
 int decode(uint8_t* rom, opcode_t* opcode) {
 	uint8_t op = *rom;
@@ -219,27 +174,3 @@ void disassemble(opcode_t* opcode, char* str) {
 	}
 }
 
-int main(int argc, char** argv) {
-	if (argc < 2) {
-		err("Usage: %s file.bin\n", argv[0]);
-	}
-	FILE* f = fopen(argv[1], "rb");
-	if (!f) {
-		err("Could not open %s.\n", argv[1]);
-	}
-	int sz = fread(rom, 1, 1<<16, f);
-	int pc = 0;
-	while (pc < sz) {
-		char str[256];
-		opcode_t opcode;
-		int cnt = decode(rom, &opcode);
-		disassemble(&opcode, str);
-		if (cnt == 1) {
-			printf("%04x: [%02x]    %s\n", pc, rom[pc], str);
-		}
-		else if (cnt == 2) {
-			printf("%04x: [%02x %02x] %s\n", pc, rom[pc], rom[pc+1], str);
-		}
-		pc += cnt;
-	}
-}
