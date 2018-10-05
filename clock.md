@@ -22,7 +22,7 @@ manual button pressing (filtered to avoid glitches) as clock. The latter two hav
 to have rather slow rise time - so the clock signal will be passed through 4 inverters,
 similarly to Darlington pair, in order to discretize the clock as much as possible:
 
-![clock](images/clock_inv.png)
+![clock](images/clock_inv.png?raw=true)
 
 The measured rise time is about a nanosecond or two, which should be enough.
 (update: actually, two inverters is enough too, with R_base = 100, R_pullup = 270).
@@ -35,4 +35,4 @@ in about 24 T flip-flops.
 design of prescaler seems to be commonly used, and is relatively low on components
 (one alternative is using D-flip-flop, which has 6 NANDs):
 
-![prescaler](images/prescaler.png?raw=true)
+![prescaler](images/clock_div.png?raw=true)
