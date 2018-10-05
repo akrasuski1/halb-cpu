@@ -18,7 +18,13 @@ The clock will be generated using astable oscillator, at frequency adjustable in
 range (less than a factor of five or so) by potentiometer. There will be a long chain of
 prescaler units, each dividing frequency by two. The actual number of prescalers used will be
 decided by DIP switches. There should be also possibility of using external clock, or even
-manual button pressing (filtered to avoid glitches) as clock.
+manual button pressing (filtered to avoid glitches) as clock. The latter two have potential
+to have rather slow rise time - so the clock signal will be passed through 4 inverters,
+similarly to Darlington pair, in order to discretize the clock as much as possible:
+
+![clock](clock_inv.png)
+
+The measured rise time is about a nanosecond or two, which should be enough.
 
 The oscillator frequency should be something very large, 10MHz perhaps. The last stage of
 prescalers should go down to maybe 0.5Hz, to see the updates in real time. This totals
