@@ -36,3 +36,7 @@ design of prescaler seems to be commonly used, and is relatively low on componen
 (one alternative is using D-flip-flop, which has 6 NANDs):
 
 ![prescaler](images/clock_div.png?raw=true)
+
+After checking it, it seems to be very sensitive on input clock frequency though - for some capacitor
+and resistor values, it works at 1MHz, for others - 100kHz etc. Otherwise there are eitther
+extra unwanted oscillations, or the output stays constant the whole time.
