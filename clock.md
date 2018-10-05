@@ -25,6 +25,7 @@ similarly to Darlington pair, in order to discretize the clock as much as possib
 ![clock](images/clock_inv.png)
 
 The measured rise time is about a nanosecond or two, which should be enough.
+(update: actually, two inverters is enough too, with R_base = 100, R_pullup = 270).
 
 The oscillator frequency should be something very large, 10MHz perhaps. The last stage of
 prescalers should go down to maybe 0.5Hz, to see the updates in real time. This totals
