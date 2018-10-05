@@ -57,4 +57,17 @@ I thought about using [round holes goldpins](https://www.google.pl/search?q=roun
 but they don't seem to have bent versions and square ones don't fit to round sockets. I guess
 I'll stay with usual rectangular then, hoping for best.
 
+There may be quite a bit of signals coming in and out of components - for example, ALU will have
+2 8-bit inputs, 8-bit output, a bunch of control signals and power supply, totalling to around 30-35
+wires. That's probably too much to fit on a single board, so the slices will be sandwiched from both
+sides, one side dedicated to 8-bit signals, and the other to the smaller ones. Here's a quick
+sketch of what it could look like:
+
+![sketch](images/plane.png)
+
+For clarity, backplane (and frontplane, if I may call it that) are transparent on the image. All
+individual boards (two on the image) are identical in all regards, except for location of 8-bit
+interface pin. Note that single pin may be mechanically unstable in regard to twisting stress, so
+I'll probably use double pins for each signal (this may also contribute to better contact).
+
 As for interconnecting components (register to multiplexer, etc.), I think I'll use IDC plugs.
