@@ -38,5 +38,6 @@ design of prescaler seems to be commonly used, and is relatively low on componen
 ![prescaler](images/clock_div.png?raw=true)
 
 After checking it, it seems to be very sensitive on input clock frequency though - for some capacitor
-and resistor values, it works at 1MHz, for others - 100kHz etc. Otherwise there are eitther
-extra unwanted oscillations, or the output stays constant the whole time.
+and resistor values, it works at 1MHz, for others - 100kHz etc. Otherwise there are either
+extra unwanted oscillations, or the output stays constant the whole time. In the end, I'll
+probably stick with ordinary D flip-flops, regardless of their size, since they work more reliably.
