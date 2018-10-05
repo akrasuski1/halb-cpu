@@ -22,7 +22,7 @@ manual button pressing (filtered to avoid glitches) as clock. The latter two hav
 to have rather slow rise time - so the clock signal will be passed through 4 inverters,
 similarly to Darlington pair, in order to discretize the clock as much as possible:
 
-![clock](clock_inv.png)
+![clock](images/clock_inv.png)
 
 The measured rise time is about a nanosecond or two, which should be enough.
 
