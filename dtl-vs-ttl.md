@@ -40,6 +40,19 @@ timescale):
 
 The exact measurements will follow after TTL description to compare the two.
 
+### Improvement 2
+
+As an alternative to adding third diode, we can add a capacitor over the diode closest to transistor
+base. Generally speaking, it will have no effect in the long term (i.e. for low frequencies), but
+will act as short circuit for a short moment until it charges, allowing for quick transistor
+switch:
+
+![dtl_cap](images/dtl_cap.png?raw=true)
+
+The capacitor value changes the propagation time, but not as much as you would think. Generally, smaller
+values make for faster switching, but if we go too low (10pF or so, comparable to transistor parasitic
+capacitance), the cap will not be able to fully switch the transistor. I found 47pF to be the sweet spot.
+
 ## TTL
 
 More modern alternative is TTL, which exchanges the strange-looking two diode configuration
@@ -118,7 +131,7 @@ happen, but it would not be enough to cause trouble, since the leaking voltage h
 
 # DTL measurements
 
-I conducted the same experiment on DTL inverters:
+I conducted the same experiment on DTL inverters (no cap):
 
 ![DTL](images/dtl-graph.png?raw=true)
 
