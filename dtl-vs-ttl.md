@@ -135,11 +135,24 @@ I conducted the same experiment on DTL inverters (no cap):
 
 ![DTL](images/dtl-graph.png?raw=true)
 
+DTL (47pF cap):
+
+![DTL](images/dtl_cap_graph.png?raw=true)
+
 # Verdict
 
 DTL uses 2R, 3D and 1T per inverter, while TTL uses 2R and 2T per inverter. DTL
 has shorter delays for sensible current values. DTL also isolates inputs from other
 inputs. All things considered, I think I'll go with DTL.
+
+As for cap vs no-cap versions, the results were slightly in favor of no-cap version, though
+the cap version could have the cap value tweaked to improve the results. I'm not too comfortable
+having capacitors in my circuit though since there may be some high frequency phenomena going
+on I would have trouble understanding and debugging (current spikes, for instance).
+There is one argument in favor of cap version - it requires just one additional diode per input,
+whereas no-cap version two. Total number of components is the same for inverter, but for
+NAND gates there will be an extra diode to solder per each input. Still, I'll go with no-cap
+version.
 
 ## Real life
 
@@ -316,3 +329,38 @@ rise time, which may distort my measurements too.
 | 3.0 | 7.5 | 0.16 | 35.0 |
 | 3.0 | 5.0 | 0.15 | 42.0 |
 | 3.0 | 3.0 | 0.14 | 54.0 |
+
+# Table of measurements (DTL with 47pF cap)
+
+(X - pullup)
+
+| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
+| ------------- | ------------- | ------------- | ------------- |
+| 47.0 | 100.0 | 1900.0 | 2.6 |
+| 47.0 | 47.0 | 1450.0 | 3.8 |
+| 47.0 | 33.0 | 1186.0 | 4.8 |
+| 47.0 | 30.0 | 1113.0 | 5.1 |
+| 47.0 | 28.0 | 1075.0 | 5.4 |
+| 47.0 | 22.0 | 900.0 | 6.3 |
+| 47.0 | 10.0 | 560.0 | 12.0 |
+| 47.0 | 7.5 | 470.0 | 15.0 |
+| 47.0 | 5.0 | 360.0 | 22.0 |
+| 22.0 | 47.0 | 950.0 | 5.2 |
+| 10.0 | 100.0 | 800.0 | 7.4 |
+| 10.0 | 47.0 | 600.0 | 8.5 |
+| 10.0 | 22.0 | 460.0 | 11.0 |
+| 10.0 | 10.0 | 340.0 | 17.0 |
+| 10.0 | 7.5 | 310.0 | 20.0 |
+| 10.0 | 5.0 | 260.0 | 27.0 |
+| 10.0 | 3.0 | 220.0 | 41.0 |
+| 7.5 | 47.0 | 510.0 | 11.0 |
+| 5.0 | 47.0 | 410.0 | 15.0 |
+| 5.0 | 22.0 | 310.0 | 17.0 |
+| 5.0 | 10.0 | 240.0 | 23.0 |
+| 5.0 | 7.5 | 220.0 | 26.0 |
+| 3.0 | 47.0 | 350.0 | 23.0 |
+| 3.0 | 22.0 | 240.0 | 26.0 |
+| 3.0 | 10.0 | 175.0 | 31.0 |
+| 3.0 | 7.5 | 163.0 | 35.0 |
+| 3.0 | 5.0 | 153.0 | 41.0 |
+| 3.0 | 3.0 | 144.0 | 55.0 |
