@@ -72,6 +72,7 @@ I'll probably use double pins for each signal (this may also contribute to bette
 
 Note that you could make the boards fully identical, including 8-bit pin location, if you translate
 the boards relative to the rest of the stack. This will make the stack slanted though. Also, instead
-of backplanes you could use long female pin headers for connection (Arduino-shield-like).
+of backplanes you could use long female pin headers for connection (Arduino-shield-like) - though
+to avoid shorts you would have to remove a whole copper strip, which is too annoying to be practical.
 
 As for interconnecting components (register to multiplexer, etc.), I think I'll use IDC plugs.
