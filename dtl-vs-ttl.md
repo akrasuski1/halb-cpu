@@ -150,7 +150,7 @@ the cap version could have the cap value tweaked to improve the results. I'm not
 having capacitors in my circuit though since there may be some high frequency phenomena going
 on I would have trouble understanding and debugging (current spikes, for instance).
 There is one argument in favor of cap version - it requires just one additional diode per input,
-whereas no-cap version two. Total number of components is the same for inverter, but for
+whereas no-cap version, two. Total number of components is the same for inverter, but for
 NAND gates there will be an extra diode to solder per each input. Still, I'll go with no-cap
 version.
 
