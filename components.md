@@ -70,4 +70,8 @@ individual boards (two on the image) are identical in all regards, except for lo
 interface pin. Note that single pin may be mechanically unstable in regard to twisting stress, so
 I'll probably use double pins for each signal (this may also contribute to better contact).
 
+Note that you could make the boards fully identical, including 8-bit pin location, if you translate
+the boards relative to the rest of the stack. This will make the stack slanted though. Also, instead
+of backplanes you could use long female pin headers for connection (Arduino-shield-like).
+
 As for interconnecting components (register to multiplexer, etc.), I think I'll use IDC plugs.
