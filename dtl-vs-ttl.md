@@ -53,6 +53,20 @@ The capacitor value changes the propagation time, but not as much as you would t
 values make for faster switching, but if we go too low (10pF or so, comparable to transistor parasitic
 capacitance), the cap will not be able to fully switch the transistor. I found 47pF to be the sweet spot.
 
+### Schottky version
+
+There are so many versions of DTL gates I find on the Internet! Here's a low-component one, that uses
+Schootky diode as input:
+
+![dtl_schottky](images/dtl_schottky.png)
+
+The main reason why the usual DTL circuits use two or more diodes is to shift the required voltage
+for the low level up - regular diode has voltage drop ~0.6V, pretty close to transistor BE drop,
+which means circuit is barely operating and slightest noise may cause problems. In contrast,
+Schottky diodes have much better properties - from Vin vs. Vout chart we see there is about
+0.5V gap until inverter switches state, thanks to Schottkies running at roughly 150mV (in simulation at
+least).
+
 ## TTL
 
 More modern alternative is TTL, which exchanges the strange-looking two diode configuration
