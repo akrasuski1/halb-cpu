@@ -58,7 +58,7 @@ capacitance), the cap will not be able to fully switch the transistor. I found 4
 There are so many versions of DTL gates I find on the Internet! Here's a low-component one, that uses
 Schottky diode as input:
 
-![dtl_schottky](images/dtl_schottky.png)
+![dtl_schottky](images/dtl_schottky.png?raw=true)
 
 The main reason why the usual DTL circuits use two or more diodes is to shift the required voltage
 for the low level up - regular diode has voltage drop ~0.6V, pretty close to transistor BE drop,
@@ -67,6 +67,9 @@ Schottky diodes have much better properties - from Vin vs. Vout chart we see the
 0.5V gap until inverter switches state, thanks to Schottkies running at roughly 150mV (in simulation at
 least). This allows to skip inverted diode; which further means the bypass diode is redundant as well,
 leaving total component count at a diode, transistor and two resistors (plus a diode each for extra inputs).
+
+Note that, although you can't really see it on the graph above, there is a short (40ns) overshoot while
+switching: on one simulation, to -2V and to 5.5V. I don't think this will be a big issue though.
 
 ## TTL
 
@@ -154,6 +157,12 @@ DTL (47pF cap):
 
 ![DTL](images/dtl_cap_graph.png?raw=true)
 
+DTL (Schottky):
+
+![DTL](images/dtl_schottky_graph.png?raw=true)
+
+This one (Schottky) returned to TTL's pattern of one curve for all resistors. Convenient.
+
 # Verdict
 
 DTL uses 2R, 3D and 1T per inverter, while TTL uses 2R and 2T per inverter. DTL
@@ -166,8 +175,11 @@ having capacitors in my circuit though since there may be some high frequency ph
 on I would have trouble understanding and debugging (current spikes, for instance).
 There is one argument in favor of cap version - it requires just one additional diode per input,
 whereas no-cap version, two. Total number of components is the same for inverter, but for
-NAND gates there will be an extra diode to solder per each input. Still, I'll go with no-cap
-version.
+NAND gates there will be an extra diode to solder per each input. Still, I'll go with no-cap.
+
+Schottky vs. regular diode: the Schottky version is somewhat less efficient power-wise (30% or so),
+but has quite substantial advantage in its component count (2R, 3D, 1T (+2D per) vs 2R, 1D, 1T (+1D per)).
+I think the simplicity is worth sacrificing increased power usage.
 
 ## Real life
 
@@ -379,3 +391,29 @@ rise time, which may distort my measurements too.
 | 3.0 | 7.5 | 163.0 | 35.0 |
 | 3.0 | 5.0 | 153.0 | 41.0 |
 | 3.0 | 3.0 | 144.0 | 55.0 |
+
+# Table of measurements (DTL with Schottky)
+
+(X - pullup)
+
+| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
+| ------------- | ------------- | ------------- | ------------- |
+| 47.0 | 47.0 | 1500.0 | 5.0 |
+| 47.0 | 22.0 | 1000.0 | 7.5 |
+| 47.0 | 10.0 | 550.0 | 14.0 |
+| 47.0 | 5.0 | 320.0 | 27.0 |
+| 22.0 | 47.0 | 1050.0 | 7.0 |
+| 22.0 | 10.0 | 500.0 | 17.0 |
+| 22.0 | 5.0 | 310.0 | 29.0 |
+| 10.0 | 22.0 | 650.0 | 15.0 |
+| 10.0 | 10.0 | 400.0 | 21.0 |
+| 10.0 | 5.0 | 280.0 | 33.0 |
+| 10.0 | 3.0 | 200.0 | 49.0 |
+| 5.0 | 10.0 | 290.0 | 30.0 |
+| 5.0 | 7.0 | 250.0 | 35.0 |
+| 5.0 | 5.0 | 210.0 | 42.0 |
+| 5.0 | 3.0 | 175.0 | 58.0 |
+| 3.0 | 10.0 | 205.0 | 40.0 |
+| 3.0 | 7.0 | 188.0 | 46.0 |
+| 3.0 | 5.0 | 170.0 | 55.0 |
+| 3.0 | 3.0 | 145.0 | 70.0 |
