@@ -56,7 +56,7 @@ capacitance), the cap will not be able to fully switch the transistor. I found 4
 ### Schottky version
 
 There are so many versions of DTL gates I find on the Internet! Here's a low-component one, that uses
-Schootky diode as input:
+Schottky diode as input:
 
 ![dtl_schottky](images/dtl_schottky.png)
 
@@ -65,7 +65,8 @@ for the low level up - regular diode has voltage drop ~0.6V, pretty close to tra
 which means circuit is barely operating and slightest noise may cause problems. In contrast,
 Schottky diodes have much better properties - from Vin vs. Vout chart we see there is about
 0.5V gap until inverter switches state, thanks to Schottkies running at roughly 150mV (in simulation at
-least).
+least). This allows to skip inverted diode; which further means the bypass diode is redundant as well,
+leaving total component count at a diode, transistor and two resistors (plus a diode each for extra inputs).
 
 ## TTL
 
