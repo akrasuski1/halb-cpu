@@ -161,7 +161,9 @@ DTL (Schottky):
 
 ![DTL](images/dtl_schottky_graph.png?raw=true)
 
-This one (Schottky) returned to TTL's pattern of one curve for all resistors. Convenient.
+This one (Schottky) returned to TTL's pattern of one curve for all resistors. Convenient,
+and also, as I confirmed, allows to skip pullup resistor altogether without penalty with
+regards to speed-power tradeoff. Another component less.
 
 # Verdict
 
@@ -178,7 +180,9 @@ whereas no-cap version, two. Total number of components is the same for inverter
 NAND gates there will be an extra diode to solder per each input. Still, I'll go with no-cap.
 
 Schottky vs. regular diode: the Schottky version is somewhat less efficient power-wise (30% or so),
-but has quite substantial advantage in its component count (2R, 3D, 1T (+2D per) vs 2R, 1D, 1T (+1D per)).
+but has quite substantial advantage in its component count (2R, 3D, 1T (+2D per) - call it 6 components,
+perhaps 5 if we skip pullup, which I haven't checked for feasibility;
+vs. 2R (or 1R without pullup - works), 1D, 1T (+1D per) - call it 3 components).
 I think the simplicity is worth sacrificing increased power usage.
 
 ## Real life
