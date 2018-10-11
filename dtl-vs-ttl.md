@@ -194,6 +194,12 @@ non-negligible capacitance (15pF * 47kOhm = 0.7us), and second, I'm using its ca
 generator as input due to lack of good waveform generator. It seems to have about 2us
 rise time, which may distort my measurements too.
 
+For Schottky DTL, 2-inverter time at 47k, no pullup, is ~600ns (gate delay = 300ns). From simulation,
+we got 2700ns per 24 inverters, or 110ns per gate. Looks like there is some discrepancy - 3x difference.
+Happy to see it's within an order of magnitude though. I don't know what is the reason; perhaps
+measuring jig capacitances again, though I tried to control for it this time. Maybe real
+components just aren't as ideal as LTspice sees them.
+
 # Table of measurements (TTL)
 
 | X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
@@ -421,6 +427,7 @@ rise time, which may distort my measurements too.
 | 3.0 | 7.0 | 188.0 | 46.0 |
 | 3.0 | 5.0 | 170.0 | 55.0 |
 | 3.0 | 3.0 | 145.0 | 70.0 |
+| -   | 47  | 2700 | 2.4 |
 | -   | 22  | 1300 | 5.2 |
 | -   | 10  | 680  | 11 |
 | -   | 7   | 490  | 16 |
