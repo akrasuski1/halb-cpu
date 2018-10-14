@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 	while (pc < sz) {
 		char str[256];
 		opcode_t opcode;
-		int cnt = decode(rom, &opcode);
+		int cnt = decode(rom + pc, &opcode);
 		disassemble(&opcode, str);
 		if (cnt == 1) {
 			printf("%04x: [%02x]    %s\n", pc, rom[pc], str);
