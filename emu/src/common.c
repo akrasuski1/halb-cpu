@@ -16,7 +16,7 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 		opcode->type = OP_ALU2;
 		opcode->alu2 = ((op >> 3) & 1) | (((op >> 6) & 3) << 1);
 		opcode->dst.type = OPER_REG;
-		opcode->dst.reg = REG_H + dd;
+		opcode->dst.reg = dd;
 		if (last3 <= 2) {
 			opcode->src.type = OPER_REG;
 			opcode->src.reg = (last3 == 0) ? REG_A : (last3 == 1) ? REG_B : REG_L;
@@ -37,13 +37,13 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 		opcode->type = OP_ALU1;
 		opcode->alu1 = aa;
 		opcode->dst.type = OPER_REG;
-		opcode->dst.reg = REG_H + dd;
+		opcode->dst.reg = dd;
 		opcode->src = opcode->dst;
 		return 1;
 	}
 	else if (last4 == 6 || last4 == 7) {
 		opcode->src.type = OPER_REG;
-		opcode->src.reg = REG_H + dd;
+		opcode->src.reg = dd;
 		if (aa == 0) {
 			opcode->dst.type = OPER_MEM_HL;
 		}
@@ -102,11 +102,10 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 			return 1;
 		}
 		else if (first4 <= 3) {
-			opcode->type = OP_RETX;
+			opcode->type = OP_LPM;
 			opcode->dst.type = OPER_REG;
-			opcode->dst.reg = REG_H + dd;
-			opcode->src.type = OPER_IMM;
-			opcode->src.imm = imm;
+			opcode->dst.reg = dd;
+			opcode->src.type = OPER_MEM_HL;
 			return 2;
 		}
 	}
@@ -116,7 +115,7 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 
 int print_operand(operand_t* operand, char* str) {
 	switch (operand->type) {
-	case OPER_REG:       return sprintf(str, "%c", "HLAB"[operand->reg - REG_H]);
+	case OPER_REG:       return sprintf(str, "%c", "HLAB"[operand->reg]);
 	case OPER_IMM:       return sprintf(str, "0x%02x", operand->imm);
 	case OPER_MEM_IMM:   return sprintf(str, "[00:%02x]", operand->imm);
 	case OPER_MEM_HL:    return sprintf(str, "[H:L]");
@@ -159,8 +158,8 @@ void disassemble(opcode_t* opcode, char* str) {
 	else if (opcode->type == OP_RESERVED) {
 		str += sprintf(str, "RESERVED");
 	}
-	else if (opcode->type == OP_RETX) {
-		str += sprintf(str, "RET ");
+	else if (opcode->type == OP_LPM) {
+		str += sprintf(str, "LPM ");
 		str += print_operand(&opcode->dst, str);
 		str += sprintf(str, ", ");
 		str += print_operand(&opcode->src, str);
@@ -174,3 +173,36 @@ void disassemble(opcode_t* opcode, char* str) {
 	}
 }
 
+void emulator_init(emulator_t* emul, uint8_t* rom, uint8_t* ram, uint16_t pc) {
+	for (int i = 0; i < 4; i++) {
+		emul->regs[i] = 0;
+	}
+	emul->pc = pc;
+	emul->flags = 0;
+	emul->ram = ram;
+	emul->rom = rom;
+}
+
+void emulator_dump(emulator_t* emul) {
+	opcode_t opcode;
+	int cnt = decode(emul->rom + emul->pc, &opcode);
+	char str[256];
+	disassemble(&opcode, str);
+	if (cnt == 1) {
+		printf("PC: %04x -> [%02x]    %s\n", emul->pc, 
+				emul->rom[emul->pc], str);
+	}
+	else if (cnt == 2) {
+		printf("PC: %04x -> [%02x %02x] %s\n", emul->pc,
+				emul->rom[emul->pc], emul->rom[emul->pc+1], str);
+	}
+	printf("H: %02x L: %02x\n", emul->regs[REG_H], emul->regs[REG_L]);
+	printf("A: %02x B: %02x F: %02x\n", emul->regs[REG_A], emul->regs[REG_B], emul->flags);
+	printf("====\n");
+}
+
+void emulator_step(emulator_t* emul) {
+	opcode_t opcode;
+	int cnt = decode(emul->rom + emul->pc, &opcode);
+	emul->pc += cnt;
+}

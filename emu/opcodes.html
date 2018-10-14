@@ -1,0 +1,323 @@
+<html>
+    <style>
+body {
+    background-color: #ffffff;
+    font-family:monospace;
+}
+table {
+    border-collapse: collapse;
+}
+.alu2 {
+    background-color: #ffffdd;
+}
+.alu1 {
+    background-color: #ddffff;
+}
+.load {
+    background-color: #ddffdd;
+}
+.store {
+    background-color: #ddddff;
+}
+.jump {
+    background-color: #ffdddd;
+}
+.res {
+    background-color: #dddddd;
+}
+.misc {
+    background-color: #ffddff;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align:center;
+}
+    </style>
+    <body><table>
+<tr>  <td class="alu2"><b>00</b><br/>ADD H, A</td>
+  <td class="alu2"><b>01</b><br/>ADD H, B</td>
+  <td class="alu2"><b>02</b><br/>ADD H, L</td>
+  <td class="alu2"><b>03</b><br/>ADD H, 0xee</td>
+  <td class="alu2"><b>04</b><br/>ADD H, [00:ee]</td>
+  <td class="alu1"><b>05</b><br/>INC H</td>
+  <td class="store"><b>06</b><br/>MOV [H:L], H</td>
+  <td class="load"><b>07</b><br/>MOV H, [H:L]</td>
+  <td class="alu2"><b>08</b><br/>MOV H, A</td>
+  <td class="alu2"><b>09</b><br/>MOV H, B</td>
+  <td class="alu2"><b>0A</b><br/>MOV H, L</td>
+  <td class="alu2"><b>0B</b><br/>MOV H, 0xee</td>
+  <td class="alu2"><b>0C</b><br/>MOV H, [00:ee]</td>
+  <td class="jump"><b>0D</b><br/>JNE H:L</td>
+  <td class="res"><b>0E</b><br/>RESERVED</td>
+  <td class="misc"><b>0F</b><br/>CALL</td>
+</tr>
+<tr>  <td class="alu2"><b>10</b><br/>ADD L, A</td>
+  <td class="alu2"><b>11</b><br/>ADD L, B</td>
+  <td class="alu2"><b>12</b><br/>ADD L, L</td>
+  <td class="alu2"><b>13</b><br/>ADD L, 0xee</td>
+  <td class="alu2"><b>14</b><br/>ADD L, [00:ee]</td>
+  <td class="alu1"><b>15</b><br/>INC L</td>
+  <td class="store"><b>16</b><br/>MOV [H:L], L</td>
+  <td class="load"><b>17</b><br/>MOV L, [H:L]</td>
+  <td class="alu2"><b>18</b><br/>MOV L, A</td>
+  <td class="alu2"><b>19</b><br/>MOV L, B</td>
+  <td class="alu2"><b>1A</b><br/>MOV L, L</td>
+  <td class="alu2"><b>1B</b><br/>MOV L, 0xee</td>
+  <td class="alu2"><b>1C</b><br/>MOV L, [00:ee]</td>
+  <td class="jump"><b>1D</b><br/>JE H:L</td>
+  <td class="res"><b>1E</b><br/>RESERVED</td>
+  <td class="misc"><b>1F</b><br/>LPM L, [H:L]</td>
+</tr>
+<tr>  <td class="alu2"><b>20</b><br/>ADD A, A</td>
+  <td class="alu2"><b>21</b><br/>ADD A, B</td>
+  <td class="alu2"><b>22</b><br/>ADD A, L</td>
+  <td class="alu2"><b>23</b><br/>ADD A, 0xee</td>
+  <td class="alu2"><b>24</b><br/>ADD A, [00:ee]</td>
+  <td class="alu1"><b>25</b><br/>INC A</td>
+  <td class="store"><b>26</b><br/>MOV [H:L], A</td>
+  <td class="load"><b>27</b><br/>MOV A, [H:L]</td>
+  <td class="alu2"><b>28</b><br/>MOV A, A</td>
+  <td class="alu2"><b>29</b><br/>MOV A, B</td>
+  <td class="alu2"><b>2A</b><br/>MOV A, L</td>
+  <td class="alu2"><b>2B</b><br/>MOV A, 0xee</td>
+  <td class="alu2"><b>2C</b><br/>MOV A, [00:ee]</td>
+  <td class="jump"><b>2D</b><br/>JNC H:L</td>
+  <td class="res"><b>2E</b><br/>RESERVED</td>
+  <td class="misc"><b>2F</b><br/>LPM A, [H:L]</td>
+</tr>
+<tr>  <td class="alu2"><b>30</b><br/>ADD B, A</td>
+  <td class="alu2"><b>31</b><br/>ADD B, B</td>
+  <td class="alu2"><b>32</b><br/>ADD B, L</td>
+  <td class="alu2"><b>33</b><br/>ADD B, 0xee</td>
+  <td class="alu2"><b>34</b><br/>ADD B, [00:ee]</td>
+  <td class="alu1"><b>35</b><br/>INC B</td>
+  <td class="store"><b>36</b><br/>MOV [H:L], B</td>
+  <td class="load"><b>37</b><br/>MOV B, [H:L]</td>
+  <td class="alu2"><b>38</b><br/>MOV B, A</td>
+  <td class="alu2"><b>39</b><br/>MOV B, B</td>
+  <td class="alu2"><b>3A</b><br/>MOV B, L</td>
+  <td class="alu2"><b>3B</b><br/>MOV B, 0xee</td>
+  <td class="alu2"><b>3C</b><br/>MOV B, [00:ee]</td>
+  <td class="jump"><b>3D</b><br/>JC H:L</td>
+  <td class="res"><b>3E</b><br/>RESERVED</td>
+  <td class="misc"><b>3F</b><br/>LPM B, [H:L]</td>
+</tr>
+<tr>  <td class="alu2"><b>40</b><br/>SUB H, A</td>
+  <td class="alu2"><b>41</b><br/>SUB H, B</td>
+  <td class="alu2"><b>42</b><br/>SUB H, L</td>
+  <td class="alu2"><b>43</b><br/>SUB H, 0xee</td>
+  <td class="alu2"><b>44</b><br/>SUB H, [00:ee]</td>
+  <td class="alu1"><b>45</b><br/>DEC H</td>
+  <td class="store"><b>46</b><br/>MOV [00:ee], H</td>
+  <td class="load"><b>47</b><br/>MOV H, [00:ee]</td>
+  <td class="alu2"><b>48</b><br/>CMP H, A</td>
+  <td class="alu2"><b>49</b><br/>CMP H, B</td>
+  <td class="alu2"><b>4A</b><br/>CMP H, L</td>
+  <td class="alu2"><b>4B</b><br/>CMP H, 0xee</td>
+  <td class="alu2"><b>4C</b><br/>CMP H, [00:ee]</td>
+  <td class="jump"><b>4D</b><br/>JN H:L</td>
+  <td class="res"><b>4E</b><br/>RESERVED</td>
+  <td class="res"><b>4F</b><br/>RESERVED</td>
+</tr>
+<tr>  <td class="alu2"><b>50</b><br/>SUB L, A</td>
+  <td class="alu2"><b>51</b><br/>SUB L, B</td>
+  <td class="alu2"><b>52</b><br/>SUB L, L</td>
+  <td class="alu2"><b>53</b><br/>SUB L, 0xee</td>
+  <td class="alu2"><b>54</b><br/>SUB L, [00:ee]</td>
+  <td class="alu1"><b>55</b><br/>DEC L</td>
+  <td class="store"><b>56</b><br/>MOV [00:ee], L</td>
+  <td class="load"><b>57</b><br/>MOV L, [00:ee]</td>
+  <td class="alu2"><b>58</b><br/>CMP L, A</td>
+  <td class="alu2"><b>59</b><br/>CMP L, B</td>
+  <td class="alu2"><b>5A</b><br/>CMP L, L</td>
+  <td class="alu2"><b>5B</b><br/>CMP L, 0xee</td>
+  <td class="alu2"><b>5C</b><br/>CMP L, [00:ee]</td>
+  <td class="jump"><b>5D</b><br/>JGE H:L</td>
+  <td class="res"><b>5E</b><br/>RESERVED</td>
+  <td class="res"><b>5F</b><br/>RESERVED</td>
+</tr>
+<tr>  <td class="alu2"><b>60</b><br/>SUB A, A</td>
+  <td class="alu2"><b>61</b><br/>SUB A, B</td>
+  <td class="alu2"><b>62</b><br/>SUB A, L</td>
+  <td class="alu2"><b>63</b><br/>SUB A, 0xee</td>
+  <td class="alu2"><b>64</b><br/>SUB A, [00:ee]</td>
+  <td class="alu1"><b>65</b><br/>DEC A</td>
+  <td class="store"><b>66</b><br/>MOV [00:ee], A</td>
+  <td class="load"><b>67</b><br/>MOV A, [00:ee]</td>
+  <td class="alu2"><b>68</b><br/>CMP A, A</td>
+  <td class="alu2"><b>69</b><br/>CMP A, B</td>
+  <td class="alu2"><b>6A</b><br/>CMP A, L</td>
+  <td class="alu2"><b>6B</b><br/>CMP A, 0xee</td>
+  <td class="alu2"><b>6C</b><br/>CMP A, [00:ee]</td>
+  <td class="jump"><b>6D</b><br/>JL H:L</td>
+  <td class="res"><b>6E</b><br/>RESERVED</td>
+  <td class="res"><b>6F</b><br/>RESERVED</td>
+</tr>
+<tr>  <td class="alu2"><b>70</b><br/>SUB B, A</td>
+  <td class="alu2"><b>71</b><br/>SUB B, B</td>
+  <td class="alu2"><b>72</b><br/>SUB B, L</td>
+  <td class="alu2"><b>73</b><br/>SUB B, 0xee</td>
+  <td class="alu2"><b>74</b><br/>SUB B, [00:ee]</td>
+  <td class="alu1"><b>75</b><br/>DEC B</td>
+  <td class="store"><b>76</b><br/>MOV [00:ee], B</td>
+  <td class="load"><b>77</b><br/>MOV B, [00:ee]</td>
+  <td class="alu2"><b>78</b><br/>CMP B, A</td>
+  <td class="alu2"><b>79</b><br/>CMP B, B</td>
+  <td class="alu2"><b>7A</b><br/>CMP B, L</td>
+  <td class="alu2"><b>7B</b><br/>CMP B, 0xee</td>
+  <td class="alu2"><b>7C</b><br/>CMP B, [00:ee]</td>
+  <td class="jump"><b>7D</b><br/>JMP H:L</td>
+  <td class="res"><b>7E</b><br/>RESERVED</td>
+  <td class="res"><b>7F</b><br/>RESERVED</td>
+</tr>
+<tr>  <td class="alu2"><b>80</b><br/>OR H, A</td>
+  <td class="alu2"><b>81</b><br/>OR H, B</td>
+  <td class="alu2"><b>82</b><br/>OR H, L</td>
+  <td class="alu2"><b>83</b><br/>OR H, 0xee</td>
+  <td class="alu2"><b>84</b><br/>OR H, [00:ee]</td>
+  <td class="alu1"><b>85</b><br/>RCR H</td>
+  <td class="store"><b>86</b><br/>MOV [ee:L], H</td>
+  <td class="load"><b>87</b><br/>MOV H, [ee:L]</td>
+  <td class="alu2"><b>88</b><br/>XOR H, A</td>
+  <td class="alu2"><b>89</b><br/>XOR H, B</td>
+  <td class="alu2"><b>8A</b><br/>XOR H, L</td>
+  <td class="alu2"><b>8B</b><br/>XOR H, 0xee</td>
+  <td class="alu2"><b>8C</b><br/>XOR H, [00:ee]</td>
+  <td class="jump"><b>8D</b><br/>JNE PCH:ee</td>
+  <td class="res"><b>8E</b><br/>RESERVED</td>
+  <td class="misc"><b>8F</b><br/>CLZ</td>
+</tr>
+<tr>  <td class="alu2"><b>90</b><br/>OR L, A</td>
+  <td class="alu2"><b>91</b><br/>OR L, B</td>
+  <td class="alu2"><b>92</b><br/>OR L, L</td>
+  <td class="alu2"><b>93</b><br/>OR L, 0xee</td>
+  <td class="alu2"><b>94</b><br/>OR L, [00:ee]</td>
+  <td class="alu1"><b>95</b><br/>RCR L</td>
+  <td class="store"><b>96</b><br/>MOV [ee:L], L</td>
+  <td class="load"><b>97</b><br/>MOV L, [ee:L]</td>
+  <td class="alu2"><b>98</b><br/>XOR L, A</td>
+  <td class="alu2"><b>99</b><br/>XOR L, B</td>
+  <td class="alu2"><b>9A</b><br/>XOR L, L</td>
+  <td class="alu2"><b>9B</b><br/>XOR L, 0xee</td>
+  <td class="alu2"><b>9C</b><br/>XOR L, [00:ee]</td>
+  <td class="jump"><b>9D</b><br/>JE PCH:ee</td>
+  <td class="res"><b>9E</b><br/>RESERVED</td>
+  <td class="misc"><b>9F</b><br/>CLC</td>
+</tr>
+<tr>  <td class="alu2"><b>A0</b><br/>OR A, A</td>
+  <td class="alu2"><b>A1</b><br/>OR A, B</td>
+  <td class="alu2"><b>A2</b><br/>OR A, L</td>
+  <td class="alu2"><b>A3</b><br/>OR A, 0xee</td>
+  <td class="alu2"><b>A4</b><br/>OR A, [00:ee]</td>
+  <td class="alu1"><b>A5</b><br/>RCR A</td>
+  <td class="store"><b>A6</b><br/>MOV [ee:L], A</td>
+  <td class="load"><b>A7</b><br/>MOV A, [ee:L]</td>
+  <td class="alu2"><b>A8</b><br/>XOR A, A</td>
+  <td class="alu2"><b>A9</b><br/>XOR A, B</td>
+  <td class="alu2"><b>AA</b><br/>XOR A, L</td>
+  <td class="alu2"><b>AB</b><br/>XOR A, 0xee</td>
+  <td class="alu2"><b>AC</b><br/>XOR A, [00:ee]</td>
+  <td class="jump"><b>AD</b><br/>JNC PCH:ee</td>
+  <td class="res"><b>AE</b><br/>RESERVED</td>
+  <td class="misc"><b>AF</b><br/>CLN</td>
+</tr>
+<tr>  <td class="alu2"><b>B0</b><br/>OR B, A</td>
+  <td class="alu2"><b>B1</b><br/>OR B, B</td>
+  <td class="alu2"><b>B2</b><br/>OR B, L</td>
+  <td class="alu2"><b>B3</b><br/>OR B, 0xee</td>
+  <td class="alu2"><b>B4</b><br/>OR B, [00:ee]</td>
+  <td class="alu1"><b>B5</b><br/>RCR B</td>
+  <td class="store"><b>B6</b><br/>MOV [ee:L], B</td>
+  <td class="load"><b>B7</b><br/>MOV B, [ee:L]</td>
+  <td class="alu2"><b>B8</b><br/>XOR B, A</td>
+  <td class="alu2"><b>B9</b><br/>XOR B, B</td>
+  <td class="alu2"><b>BA</b><br/>XOR B, L</td>
+  <td class="alu2"><b>BB</b><br/>XOR B, 0xee</td>
+  <td class="alu2"><b>BC</b><br/>XOR B, [00:ee]</td>
+  <td class="jump"><b>BD</b><br/>JC PCH:ee</td>
+  <td class="res"><b>BE</b><br/>RESERVED</td>
+  <td class="misc"><b>BF</b><br/>CLV</td>
+</tr>
+<tr>  <td class="alu2"><b>C0</b><br/>AND H, A</td>
+  <td class="alu2"><b>C1</b><br/>AND H, B</td>
+  <td class="alu2"><b>C2</b><br/>AND H, L</td>
+  <td class="alu2"><b>C3</b><br/>AND H, 0xee</td>
+  <td class="alu2"><b>C4</b><br/>AND H, [00:ee]</td>
+  <td class="alu1"><b>C5</b><br/>ASR H</td>
+  <td class="store"><b>C6</b><br/>MOV [00:L], H</td>
+  <td class="load"><b>C7</b><br/>MOV H, [00:L]</td>
+  <td class="alu2"><b>C8</b><br/>BIT H, A</td>
+  <td class="alu2"><b>C9</b><br/>BIT H, B</td>
+  <td class="alu2"><b>CA</b><br/>BIT H, L</td>
+  <td class="alu2"><b>CB</b><br/>BIT H, 0xee</td>
+  <td class="alu2"><b>CC</b><br/>BIT H, [00:ee]</td>
+  <td class="jump"><b>CD</b><br/>JN PCH:ee</td>
+  <td class="res"><b>CE</b><br/>RESERVED</td>
+  <td class="misc"><b>CF</b><br/>SEZ</td>
+</tr>
+<tr>  <td class="alu2"><b>D0</b><br/>AND L, A</td>
+  <td class="alu2"><b>D1</b><br/>AND L, B</td>
+  <td class="alu2"><b>D2</b><br/>AND L, L</td>
+  <td class="alu2"><b>D3</b><br/>AND L, 0xee</td>
+  <td class="alu2"><b>D4</b><br/>AND L, [00:ee]</td>
+  <td class="alu1"><b>D5</b><br/>ASR L</td>
+  <td class="store"><b>D6</b><br/>MOV [00:L], L</td>
+  <td class="load"><b>D7</b><br/>MOV L, [00:L]</td>
+  <td class="alu2"><b>D8</b><br/>BIT L, A</td>
+  <td class="alu2"><b>D9</b><br/>BIT L, B</td>
+  <td class="alu2"><b>DA</b><br/>BIT L, L</td>
+  <td class="alu2"><b>DB</b><br/>BIT L, 0xee</td>
+  <td class="alu2"><b>DC</b><br/>BIT L, [00:ee]</td>
+  <td class="jump"><b>DD</b><br/>JGE PCH:ee</td>
+  <td class="res"><b>DE</b><br/>RESERVED</td>
+  <td class="misc"><b>DF</b><br/>SEC</td>
+</tr>
+<tr>  <td class="alu2"><b>E0</b><br/>AND A, A</td>
+  <td class="alu2"><b>E1</b><br/>AND A, B</td>
+  <td class="alu2"><b>E2</b><br/>AND A, L</td>
+  <td class="alu2"><b>E3</b><br/>AND A, 0xee</td>
+  <td class="alu2"><b>E4</b><br/>AND A, [00:ee]</td>
+  <td class="alu1"><b>E5</b><br/>ASR A</td>
+  <td class="store"><b>E6</b><br/>MOV [00:L], A</td>
+  <td class="load"><b>E7</b><br/>MOV A, [00:L]</td>
+  <td class="alu2"><b>E8</b><br/>BIT A, A</td>
+  <td class="alu2"><b>E9</b><br/>BIT A, B</td>
+  <td class="alu2"><b>EA</b><br/>BIT A, L</td>
+  <td class="alu2"><b>EB</b><br/>BIT A, 0xee</td>
+  <td class="alu2"><b>EC</b><br/>BIT A, [00:ee]</td>
+  <td class="jump"><b>ED</b><br/>JL PCH:ee</td>
+  <td class="res"><b>EE</b><br/>RESERVED</td>
+  <td class="misc"><b>EF</b><br/>SEN</td>
+</tr>
+<tr>  <td class="alu2"><b>F0</b><br/>AND B, A</td>
+  <td class="alu2"><b>F1</b><br/>AND B, B</td>
+  <td class="alu2"><b>F2</b><br/>AND B, L</td>
+  <td class="alu2"><b>F3</b><br/>AND B, 0xee</td>
+  <td class="alu2"><b>F4</b><br/>AND B, [00:ee]</td>
+  <td class="alu1"><b>F5</b><br/>ASR B</td>
+  <td class="store"><b>F6</b><br/>MOV [00:L], B</td>
+  <td class="load"><b>F7</b><br/>MOV B, [00:L]</td>
+  <td class="alu2"><b>F8</b><br/>BIT B, A</td>
+  <td class="alu2"><b>F9</b><br/>BIT B, B</td>
+  <td class="alu2"><b>FA</b><br/>BIT B, L</td>
+  <td class="alu2"><b>FB</b><br/>BIT B, 0xee</td>
+  <td class="alu2"><b>FC</b><br/>BIT B, [00:ee]</td>
+  <td class="jump"><b>FD</b><br/>JMP PCH:ee</td>
+  <td class="res"><b>FE</b><br/>RESERVED</td>
+  <td class="misc"><b>FF</b><br/>SEV</td>
+</tr>
+</table>
+
+<br />
+<b> Legend: </b> <br/>
+<table>
+<tr class="alu2"><td> ALU (2-op) </td></tr>
+<tr class="alu1"><td> ALU (1-op) </td></tr>
+<tr class="load"><td> load </td></tr>
+<tr class="store"><td> store </td></tr>
+<tr class="jump"><td> jump </td></tr>
+<tr class="res"><td> reserved </td></tr>
+<tr class="misc"><td> miscellaneous </td></tr>
+</table>
+    </body></html>

@@ -8,7 +8,7 @@
 uint8_t rom[100000];
 
 typedef enum opcode_type {
-	OP_RESERVED, OP_ALU2, OP_ALU1, OP_LOAD, OP_STORE, OP_JUMP, OP_CALL, OP_RETX, OP_FLAG,
+	OP_RESERVED, OP_ALU2, OP_ALU1, OP_LOAD, OP_STORE, OP_JUMP, OP_CALL, OP_LPM, OP_FLAG,
 } opcode_type;
 
 typedef enum alu1_type {
@@ -25,7 +25,7 @@ typedef enum operand_type {
 } operand_type;
 
 typedef enum reg_type {
-	REG_NONE, REG_H, REG_L, REG_A, REG_B,
+	REG_H, REG_L, REG_A, REG_B,
 } reg_type;
 
 typedef enum condition_type {
@@ -49,8 +49,19 @@ typedef struct opcode_t {
 	operand_t src;
 } opcode_t;
 
+typedef struct emulator_t {
+	uint8_t regs[4];
+	uint16_t pc;
+	uint8_t flags;
+	uint8_t* ram;
+	uint8_t* rom;
+} emulator_t;
+
 int decode(uint8_t* rom, opcode_t* opcode);
 int print_operand(operand_t* operand, char* str);
 void disassemble(opcode_t* opcode, char* str);
+void emulator_init(emulator_t* emul, uint8_t* rom, uint8_t* ram, uint16_t pc);
+void emulator_dump(emulator_t* emul);
+void emulator_step(emulator_t* emul);
 
 #endif
