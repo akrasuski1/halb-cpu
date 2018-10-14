@@ -2,6 +2,8 @@
 
 Opcode map:
 
+TODO: update RET imm to LPM HL.
+
 ![map](images/opcode_map.png?raw=true)
 
 ## ALU2
@@ -86,7 +88,7 @@ ff - flag: TODO order
 
 (call: PC <- H:L; H:L <- PC+1 - similar to MIPS `jal`)
 
-## Ret imm
+## Load program memory [H:L]
 
 ```
 84218421
@@ -97,9 +99,16 @@ ff - flag: TODO order
   rr
 ```
 
-(ret imm: PC <- H:L; reg <- imm)
-
 rr - 01: L, 10: A, 11: B.
+
+This instruction was initially not included because I thought it would unneccesarily require
+multiplexer on ROM address bus, which is 16-bit wide, making usefulness:effort ratio too small.
+(I thought about `RET reg, imm` instruction instead, loading immediate to selected register, while
+jumping to H:L at the same time, allowing to make data tables at 50% efficiency). Current idea for
+implementation is as follows: in state machine, pretend this instruction takes an immediate value,
+but has some logic in the first cycle too. First cycle: `PC<-H:L; prev<-[PC]; phase<-1; H:L<-PC+1`.
+Second cycle: `PC<-H:L; reg<-[PC]; phase<-0`. A crazy register juggling, but has to be implemented
+only as part of state machine logic, with no other additional components.
 
 ## Reserved
 
