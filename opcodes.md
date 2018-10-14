@@ -2,8 +2,6 @@
 
 Opcode map:
 
-TODO: update RET imm to LPM HL.
-
 ![map](images/opcode_map.png?raw=true)
 
 ## ALU2
