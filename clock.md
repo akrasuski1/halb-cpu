@@ -16,7 +16,24 @@ when address and data should be long since calculated). This may however cause h
 time violation for that chip (we're releasing WE line at about the same time as invalidating
 address and data buses). For that reason we may consider making 2-bit Gray code counter and
 using one of the outputs as clock as always, and using the other output as RAM access
-clock: `[00] edge [01][11 W][10 W][00] edge [01][11 W][10 W]...`. This would allow
+clock: 
+
+```
+With Gray code:
+
+Q0   '''''''''|_________|'''''''''|_________|'''''''''|_________
+Q1   ''''|_________|'''''''''|_________|'''''''''|_________|''''
+rising edge        x                   x                   x    
+WE   WWWWWWWWW           WWWWWWWWW           WWWWWWWWW          
+
+Old way:
+
+clk  ''''|_________|'''''''''|_________|'''''''''|_________|''''
+rising edge        x                   x                   x    
+WE        WWWWWWWWW           WWWWWWWWW           WWWWWWWWW     
+```
+
+This would allow
 at least half clock period of both setup and hold. Disadvantage is that in manual clock mode
 user will have to press button twice for proper cycle; and that clock will have to double
 its speed in general. The Gray code generator will have to be very reliable too, even
