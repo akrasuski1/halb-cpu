@@ -11,7 +11,7 @@ good on the first sight.
 ![D latch](http://www.play-hookey.com/digital/alt_flip_flops/images/denandff100.png)
 
 It has a total of 6 NANDs, all of which are 2-input except for one 3-input. In TTL, that gives us
-12 resistors and 19 transistors; in my version of DTL - 6 transistors, 12 resistors and 32 diodes.
+12 resistors and 19 transistors; in my Schottky DTL - 6 transistors, 6 resistors and 13 diodes.
 
 There is a pretty good criticism of this style of registers [here](http://www.megaprocessor.com/GBU_flip_flops.html).
 In short, they are prone to data race - say we want to make a T flip flop from D by connecting negative
@@ -20,7 +20,10 @@ hold times constraints. I think this issue persists even in proposed master-slav
 though (perhaps to a lesser degree). I simulated shift register using this flip-flop in LTspice
 (.asc file in ltspice directory), and it seems to work excellent. In fact, I checked how short of a
 hold time is required, and from simulation it looks like less than 1ns. Perhaps simulation idealizes
-it a bit, but still, the propagation delays will likely make the hold time long enough.
+it a bit, but still, the propagation delays will likely make the hold time long enough. I tried
+feeding negated output as data input and clocking it - i.e. make it a T flip-flop - and at
+1kHz it worked excellent. I haven't found any glitches on the scope, and the rise/fall times
+were on the order of 100-200ns with 5.1k resistors.
 
 There is one pretty serious issue with this kind of flip-flop though: as far as I can tell, there is
 no easy way to add "don't write" signal (i.e. ignore clock rising edge while "don't write" is high).
