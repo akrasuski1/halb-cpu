@@ -9,4 +9,5 @@ choice here:
 <img src="images/strip.jpg" width=300px/>
 
 I have to check whether a cut between holes is feasible to make - it would allow to make more
-compact layouts. Otherwise, I'd have to stay with drilling a whole hole in the trace.
+compact layouts. Otherwise, I'd have to stay with drilling a whole hole in the trace. The latter
+way has other advantage though: you can drill a whole stack of boards at the same time.
