@@ -16,7 +16,7 @@ when address and data should be long since calculated). This may however cause h
 time violation for that chip (we're releasing WE line at about the same time as invalidating
 address and data buses). For that reason we may consider making 2-bit Gray code counter and
 using one of the outputs as clock as always, and using the other output as RAM access
-clock: 
+clock (or even certain combination of them, to use just 3rd 25% of clock time as WE):
 
 ```
 With Gray code:
