@@ -43,8 +43,8 @@ The output of the 2-bit decoder on the schematic acts as an enable signal on eac
 It would be better to design a "8-bit inverted buffer", i.e. 8 NANDs with one of the
 inputs joined together as enables signal; and a 8-bit inverter on the right.
 
-Inverted buffer would have 8 2-input NANDs, i.e. 8 transistors, 16 resistors and 40 diodes;
-8-bit inverter - 8 1-input NANDs, i.e. 8 transistors, 16 resistors and 24 diodes.
+Inverted buffer would have 8 2-input NANDs, i.e. 8 transistors, 8 resistors and 16 diodes;
+8-bit inverter - 8 1-input NANDs, i.e. 8 transistors, 8 resistors and 8 diodes.
 
 There's a trick way to save the inverter on register store multiplexers: simply invert logic
 of registers (skip inverter before register, thus feeding inverted value; but use negated output
