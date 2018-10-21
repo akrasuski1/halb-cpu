@@ -78,4 +78,6 @@ the boards relative to the rest of the stack. This will make the stack slanted t
 of backplanes you could use long female pin headers for connection (Arduino-shield-like) - though
 to avoid shorts you would have to remove a whole copper strip, which is too annoying to be practical.
 
-As for interconnecting components (register to multiplexer, etc.), I think I'll use IDC plugs.
+As for interconnecting components (register to multiplexer, etc.), I think I'll use IDC plugs. There
+will be a few "buses" with multiple components connecting to it - using IDC cable we can mount plugs
+even in the middle, not just at the ends.
