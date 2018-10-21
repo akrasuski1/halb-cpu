@@ -17,7 +17,7 @@ There is a pretty good criticism of this style of registers [here](http://www.me
 In short, they are prone to data race - say we want to make a T flip flop from D by connecting negative
 output to the input. Then, when output switches, input immediately changes too, possibly violating
 hold times constraints. I think this issue persists even in proposed master-slave flip-flop
-though (perhaps to a lesser degree). I simulated shift register using this flip-flop in LTspice
+though (unless the two clocks are separated by a margin). I simulated shift register using this flip-flop in LTspice
 (.asc file in ltspice directory), and it seems to work excellent. In fact, I checked how short of a
 hold time is required, and from simulation it looks like less than 1ns. Perhaps simulation idealizes
 it a bit, but still, the propagation delays will likely make the hold time long enough. I tried
