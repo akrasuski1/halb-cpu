@@ -11,13 +11,21 @@ new temporary values. The only time that clock value matters other than its risi
 is when storing data to RAM. Since most of RAM chips are level-triggered, if we were to
 output the Write Enable signal as soon as we decode the instruction, we would risk
 not having address ready yet and thus writing in bogus location. For that reason,
-Write Enable is AND-ed with inverted clock (i.e. write happens in second half of the cycle,
-when address and data should be long since calculated).
+Write Enable may be AND-ed with inverted clock (i.e. write happens in second half of the cycle,
+when address and data should be long since calculated). This may however cause hold
+time violation for that chip (we're releasing WE line at about the same time as invalidating
+address and data buses). For that reason we may consider making 2-bit Gray code counter and
+using one of the outputs as clock as always, and using the other output as RAM access
+clock: `[00] edge [01][11 W][10 W][00] edge [01][11 W][10 W]...`. This would allow
+at least half clock period of both setup and hold. Disadvantage is that in manual clock mode
+user will have to press button twice for proper cycle; and that clock will have to double
+its speed in general. The Gray code generator will have to be very reliable too, even
+at high speed, and have steep slopes.
 
 The clock will be generated using astable oscillator, at frequency adjustable in some narrow
 range (less than a factor of five or so) by potentiometer. There will be a long chain of
 prescaler units, each dividing frequency by two. The actual number of prescalers used will be
-decided by DIP switches. There should be also possibility of using external clock, or even
+decided by DIP switches or similar method. There should be also possibility of using external clock, or even
 manual button pressing (filtered to avoid glitches) as clock. The latter two have potential
 to have rather slow rise time - so the clock signal will be passed through 4 inverters,
 similarly to Darlington pair, in order to discretize the clock as much as possible:
