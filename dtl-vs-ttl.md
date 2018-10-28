@@ -371,7 +371,7 @@ components just aren't as ideal as LTspice sees them.
 
 (X - pullup)
 
-| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
+| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[ns\] | Current consumption of 24 gates \[mA\] |
 | ------------- | ------------- | ------------- | ------------- |
 | 47.0 | 100.0 | 1900.0 | 2.6 |
 | 47.0 | 47.0 | 1450.0 | 3.8 |
@@ -406,7 +406,7 @@ components just aren't as ideal as LTspice sees them.
 
 (X - pullup)
 
-| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[us\] | Current consumption of 24 gates \[mA\] |
+| X \[kohm\] | Y \[kohm\] | Delay of 24 gates \[ns\] | Current consumption of 24 gates \[mA\] |
 | ------------- | ------------- | ------------- | ------------- |
 | 47.0 | 47.0 | 1500.0 | 5.0 |
 | 47.0 | 22.0 | 1000.0 | 7.5 |
