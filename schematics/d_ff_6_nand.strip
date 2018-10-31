@@ -2,19 +2,13 @@
 # 9 rows, 25 cols
 resistor 3 3 1 1 
 npn 3 2 3 3 3 4 
-diode 1 9 1 3 
-diode 2 5 2 3 
 resistor 6 1 8 3 
 npn 8 2 8 3 8 5 
 hole 4 3 
-diode 5 8 5 3 
-diode 6 4 6 3 
 diode 7 6 7 3 
 hole 9 3 
 resistor 10 1 12 3 
 npn 12 2 12 3 12 6 
-diode 10 8 10 3 
-diode 11 7 11 3 
 hole 13 3 
 resistor 14 1 16 3 
 diode 14 4 14 3 
@@ -44,3 +38,9 @@ text 25 6 text:Q
 text 25 7 text:/Q 
 text 25 1 text:Vcc 
 text 25 2 text:Gnd 
+diode 2 9 2 3 
+diode 1 5 1 3 
+diode 5 4 5 3 
+diode 6 8 6 3 
+diode 10 7 10 3 
+diode 11 8 11 3 

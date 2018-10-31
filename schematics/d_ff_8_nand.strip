@@ -1,0 +1,64 @@
+# ../schematics/d_ff_8_nand.strip
+# 9 rows, 25 cols
+pin 1 1 
+pin 1 2 
+pin 1 5 
+pin 1 6 
+text 1 6 text:p1 
+text 1 5 text:p2 
+text 1 2 text:Gnd 
+text 1 1 text:Vcc 
+hole 9 7 
+hole 12 8 
+hole 18 5 
+hole 7 6 
+resistor 4 3 2 1 
+npn 4 2 4 3 4 7 
+diode 2 6 2 3 
+diode 3 9 3 3 
+diode 5 6 5 4 
+diode 6 7 6 4 
+resistor 7 4 5 1 
+npn 7 2 7 4 7 8 
+diode 9 6 9 3 
+diode 8 7 8 3 
+resistor 10 3 8 1 
+npn 10 2 10 3 10 7 
+diode 12 7 12 4 
+diode 11 8 11 4 
+resistor 13 4 11 1 
+npn 13 2 13 4 13 6 
+diode 14 5 14 3 
+resistor 16 3 14 1 
+npn 16 2 16 3 16 8 
+diode 17 5 17 4 
+resistor 17 1 19 4 
+npn 19 2 19 4 19 5 
+diode 15 6 15 3 
+diode 18 7 18 4 
+hole 7 3 
+hole 10 4 
+hole 13 3 
+hole 16 4 
+hole 19 3 
+hole 22 4 
+hole 16 6 
+hole 19 7 
+diode 20 5 20 3 
+resistor 22 3 20 1 
+resistor 25 4 23 1 
+npn 22 2 22 3 22 7 
+diode 23 7 23 4 
+diode 24 8 24 4 
+diode 21 6 21 3 
+npn 25 2 25 4 25 6 
+wire 17 6 17 9 
+wire 21 7 21 9 
+pin 25 9 
+pin 18 9 
+hole 20 9 
+hole 16 9 
+pin 10 9 
+text 10 9 text:D 
+text 25 9 text:Q 
+text 18 9 text:/Q 

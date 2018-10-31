@@ -195,10 +195,14 @@ while not done:
 
     back = transform.flip(screen, False, False)
     for dr in components:
-        if dr["type"] not in ["cut", "hole", "jump"]:
+        if dr["type"] not in ["cut", "hole", "jump", "text"]:
             draw_it(dr)
             for xy in dr["xy"]:
                 draw_it({"type": "point", "xy": xy}, back)
+
+    for dr in components:
+        if dr["type"] in ["text"]:
+            draw_it(dr)
 
     back = transform.flip(back, True, False)
 

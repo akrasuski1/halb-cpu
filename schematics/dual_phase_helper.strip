@@ -1,0 +1,39 @@
+# ../schematics/dual_phase_helper.strip
+# 9 rows, 25 cols
+pin 25 1 
+pin 25 2 
+pin 25 3 
+pin 25 4 
+pin 25 5 
+pin 25 6 
+pin 25 7 
+pin 25 9 
+text 25 1 text:Vcc 
+text 25 2 text:Gnd 
+text 25 3 text:P1 
+text 25 4 text:P2 
+text 25 5 text:A 
+text 25 6 text:B 
+text 25 7 text:/B 
+text 25 9 text:/A 
+wire 24 3 24 8 
+hole 23 3 
+resistor 21 3 21 1 
+npn 22 2 22 3 22 8 
+hole 21 8 
+hole 14 3 
+resistor 15 3 15 1 
+diode 16 6 16 3 
+diode 17 5 17 3 
+npn 18 2 18 3 18 8 
+hole 19 3 
+wire 20 8 20 3 
+npn 13 2 13 3 13 4 
+resistor 12 3 12 1 
+wire 11 3 11 4 
+hole 12 4 
+npn 9 2 9 3 9 4 
+hole 10 3 
+resistor 8 3 8 1 
+diode 7 7 7 3 
+diode 6 9 6 3 
