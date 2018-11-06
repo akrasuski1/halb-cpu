@@ -7,18 +7,18 @@ TTL).
 
 After getting very good results in LTSpice and even real circuits using simple Schottky inverters,
 I proceeded to build more complex structures, such as D flip-flop. It worked quite oddly, depending
-on precise values of resistors used and other values. After a few hours of bashing my head trying
+on precise values of resistors used and clock used. After a few hours of bashing my head trying
 to figure out why
-apparently correct circuit failed to latch in real life, I noticed, in LTSpice, that input signal
+apparently correct circuit fails to latch in real life, I noticed, in LTSpice, that input signal
 slew rates matter a lot. And counter-intuitively, it worked better with more gentle slopes!
 
 Flip-flop has many components and interconnections, so analyzing it just by looking at voltages
 and currents vs. time wasn't very helpful. So, I stripped away a lot of things to minimize the
-problem to smallest samples behaving in odd way.
+problem to smallest sample behaving in odd way.
 
-### Diode capacitance
+## Diode capacitance
 
-The first problem was diode capacitance. The following tiny circuit, without even transistor,
+The problem was diode capacitance. The following tiny circuit, without even transistor,
 shows the problem:
 
 ![capacitance](images/schottky_capacitance.png)
@@ -43,4 +43,18 @@ high pulse during that quick fall moment. In combinational circuitry this could 
 as it is quickly resolved, but in stateful circuits (flip-flops) even a short glitch
 is enough for it to switch state.
 
-### 
+The same circuit as above, with Schottky switched to 1N4148 and original 1N4148 switched to two
+of those, works as expected at all rise times (checked as low as 1ns and noticed almost no capacitance
+effects).
+
+Diode capacitance shows also as related problem: that the more inputs the gate has, the slower it
+switches, with transition time roughly proportional to fan-in:
+
+![fan-in](images/schottky_fan_in.png)
+
+I'm pretty sure the reason is the same, and in this case causes the slow resistor to be forced
+to charge more than one diode's worth of parasitic capacitance. The time constant
+should be: 4k7 ohm * 100pF = 470ns in case of single diode and 5 times that for 5 diodes; LTSpice
+simulates both almmost an order of magnitude smaller. This may be linked to the fact that we operate
+diodes at almost "charged" state, which has unknown to me effects on time constant. In any case,
+Schottky's seem to be a much less desirable an option now.
