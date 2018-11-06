@@ -31,8 +31,8 @@ to 1ns and disregarded very brief glitches; in real life, the slew rate varied w
 source I used and how the circuit was loaded, which made the problem hardly reproducible.
 
 The culprit turns out to be Schottky diode relatively high parasitic capacitance - in this
-case, roughly 100-200pF. This is two orders of magnitude larger than usual 1N4148 or similar,
-and comparable (larger even) to transistor's capacitance. When input falls quickly enough,
+case, roughly 100-200pF. This is two orders of magnitude larger than usual 1N4148 or similar. 
+When input falls quickly enough,
 the capacitance dominates diode-like behavior. In case of simple inverter chain, as I tested
 the design before, this was even beneficial, as it made the given inverter switch before
 its input fell below 0.65V - as soon as it started falling with any respectable speed.
