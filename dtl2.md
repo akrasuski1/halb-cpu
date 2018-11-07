@@ -58,3 +58,57 @@ should be: 4k7 ohm * 100pF = 470ns in case of single diode and 5 times that for 
 simulates both almmost an order of magnitude smaller. This may be linked to the fact that we operate
 diodes at almost "charged" state, which has unknown to me effects on time constant. In any case,
 Schottky's seem to be a much less desirable an option now.
+
+## Checking capacitor DTL again
+
+![cap speedup](images/cap_speedup_chart.png)
+
+![cap speedup 2](images/cap_speedup_chart2.png)
+
+Looks like 13pF is about the best, but if we go too low, there is a sudden rise in delay. Probably
+less than that is not enough to fully disable transistor - and sure enough, datasheet for our
+transistor quotes 9pF as typical capacitance. LTSpice probably simulates something around that,
+so close enough. For safety, we'll go with something a bit higher though, like 22pF, which still
+has nice timing.
+
+## Data tables
+
+### Capacitor DTL
+
+| cap \[pF\] | resistor \[kohm\] | Delay of 24 gates \[ns\] | Current consumption of 24 gates \[mA\] |
+| ------------- | ------------- | ------------- | ------------- |
+|100.0|47.0|1560.0|2.9|
+|100.0|30.0|1058.0|4.3|
+|100.0|20.0|1020.0|6.0|
+|100.0|15.0|920.0|7.9|
+|100.0|10.0|640.0|11.3|
+|100.0|7.0|480.0|16.0|
+|100.0|5.0|350.0|22.0|
+|100.0|3.0|235.0|36.0|
+|100.0|2.0|170.0|54.0|
+|100.0|1.0|105.0|107.0|
+|100.0|0.5|75.0|215.0|
+|500.0|10.0|700.0|11.3|
+|300.0|10.0|685.0|11.3|
+|200.0|10.0|670.0|11.3|
+|100.0|10.0|640.0|11.3|
+|70.0|10.0|615.0|11.3|
+|50.0|10.0|580.0|11.3|
+|40.0|10.0|540.0|11.3|
+|30.0|10.0|500.0|11.3|
+|20.0|10.0|415.0|11.5|
+|15.0|10.0|360.0|11.8|
+|13.0|10.0|340.0|12.0|
+|12.0|10.0|340.0|12.0|
+|11.0|10.0|380.0|12.3|
+|10.0|10.0|700.0|12.2|
+|22.0|50.0|1640.0|3.0|
+|22.0|30.0|1050.0|4.8|
+|22.0|20.0|720.0|6.1|
+|22.0|10.0|440.0|11.6|
+|22.0|7.0|345.0|16.0|
+|22.0|5.0|285.0|22.0|
+|22.0|3.0|215.0|37.0|
+|22.0|2.0|170.0|55.0|
+|22.0|1.0|105.0|110.0|
+|22.0|0.5|75.0|215.0|
