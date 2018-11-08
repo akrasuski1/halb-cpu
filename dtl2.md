@@ -92,7 +92,8 @@ Then I tried to isolate which capacitor caused the problem, by removing 100nF on
 turned out two of them were causing delay on falling and rising edge each. I checked how much the
 caps had to be to remove the delay, and it seemed that 1nF was enough, but 220pF was on the fence,
 with delay noticably smaller but still apparent. I don't know what causes the discrepancy with datasheet
-and simulation; maybe the stripboard itself has stray capacitance?
+and simulation; maybe the stripboard itself has significant capacitance? Quick Internet search
+says its 20-ish pF, non-negligible, though not enough to explain everything.
 I restored the two culprits to 100nF and removed the other caps
 and tested the circuit on higher frequencies (100s of kHz) and the problem of microsecond delay somehow
 returned. Perhaps the parasitic capacitances depend on the frequency so much. Anyway, I fixed 
