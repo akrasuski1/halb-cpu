@@ -68,8 +68,42 @@ Schottky's seem to be a much less desirable an option now.
 Looks like 13pF is about the best, but if we go too low, there is a sudden rise in delay. Probably
 less than that is not enough to fully disable transistor - and sure enough, datasheet for our
 transistor quotes 9pF as typical capacitance. LTSpice probably simulates something around that,
-so close enough. For safety, we'll go with something a bit higher though, like 22pF, which still
-has nice timing.
+so close enough. For safety, we'll go with something a bit higher though, like 22pF or more, which still
+has nice timing, but a safety margin too.
+
+## Real circuit
+
+I built another D flip-flop, with this logic used as NANDs. Getting it to stripboard was more
+annoying than expected, as I had to find an acceptable gate layout again, and there is one
+point/net in the gate that has 5 components, meaning if we just put it flat on stripboard,
+a single gate will take at least 6 holes of width (4 gates per 25 column board). That is wasteful,
+so I compromised with putting multiple components into one hole. Two diodes make a very tight fit,
+so I avoided that whenever possible. I was able to achieve 4 holes width per gate (6 gates per board).
+The gate is somewhat wider in the other dimension, so I had one less trace available. Since I won't
+use 6 NAND D flip-flops in any way but as frequency dividers, I saved one trace by hardwiring D to /Q.
+
+After soldering and fixing one accidental short, the flip-flop worked. Its performance was less than ideal,
+though - I used 4k7 and 22pF as baseline, which simulated as fine divider up to around 10MHz, while
+in reality the delay was a couple of microseconds - horrible! I thought it could be the case that the
+capacitors were still too small, so I piggybacked a 100nF, way more than necessary, but I wanted to be
+on safe side this time. And magically, the delay decreased to 100ns or so, which is close to simulated.
+
+Then I tried to isolate which capacitor caused the problem, by removing 100nF ones one by one - it
+turned out two of them were causing delay on falling and rising edge each. I checked how much the
+caps had to be to remove the delay, and it seemed that 1nF was enough, but 220pF was on the fence,
+with delay noticably smaller but still apparent. I don't know what causes the discrepancy with datasheet
+and simulation; maybe the stripboard itself has stray capacitance?
+I restored the two culprits to 100nF and removed the other caps
+and tested the circuit on higher frequencies (100s of kHz) and the problem of microsecond delay somehow
+returned. Perhaps the parasitic capacitances depend on the frequency so much. Anyway, I fixed 
+all the caps back to 100nF and it got good again.
+
+In the end, I was able to achieve stable square wave 2MHz/2=1MHz, while simulation worked up to
+about 5MHz/2=2.5MHz. This is pretty close and can be caused by a number of factors, like
+oscilloscope effects, imperfect clock signal (it certainly wasn't a perfect square at 2MHz),
+perhaps some power supply noise. I'll probably stay on the safe side with using always big capacitors.
+I can always decrease resistors (with some penalty in power drain), but debugging high-frequency
+problems is a major pain in the ass to be avoided.
 
 ## Data tables
 
