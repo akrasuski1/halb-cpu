@@ -124,7 +124,9 @@ delay was decreasing with increasing Z, approaching a certain limit as Z became 
 It seemed almost as though there was no need for Ohmic path if the other resistor was below threshold
 of about 3.7k, at which point there is a sudden, almost step-function-like, drop in delay. It seemed
 very strange to me, so I modified D flip-flop to use this version of the gate and it actually worked!
-I have no explanation for this phenomenon; perhaps again some parasitic stuff is interfering.
+I have no explanation for this phenomenon; perhaps again some parasitic stuff is interfering. I'm not
+too comfortable relying on such behavior, so I'll stick with the resistor for now. (The no-resistor version
+had to be tinkered with when put in a ring oscillator configuration, for example).
 
 ## Data tables
 
