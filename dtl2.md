@@ -106,6 +106,26 @@ perhaps some power supply noise. I'll probably stay on the safe side with using 
 I can always decrease resistors (with some penalty in power drain), but debugging high-frequency
 problems is a major pain in the ass to be avoided.
 
+## *Pulldown* resistor
+
+The main reason for slowness of vanilla DTL is lack of Ohmic path from base to ground. What if we simply
+put a resistor there?
+
+![cap speedup](images/small_r.png)
+
+We get a circuit like that. I was in progress of simulating it and finding delay and power in terms of
+values of resistors Y and Z, when I noticed a couple of strange things. At first I was holding Y
+constant at 5k and varying just Z; it turned out the power stayed almost constant, while delay had
+a minimum, at about Z=5k. It rose with both higher and lower Z. So I thought to find such optimal
+Z resistor for other values of Y. Everything went well and as expected for Y 5k and larger, but
+when I got to the smaller values (3k and less), I noticed there is no clear minimum, instead
+delay was decreasing with increasing Z, approaching a certain limit as Z became open circuit.
+
+It seemed almost as though there was no need for Ohmic path if the other resistor was below threshold
+of about 3.7k, at which point there is a sudden, almost step-function-like, drop in delay. It seemed
+very strange to me, so I modified D flip-flop to use this version of the gate and it actually worked!
+I have no explanation for this phenomenon; perhaps again some parasitic stuff is interfering.
+
 ## Data tables
 
 ### Capacitor DTL
