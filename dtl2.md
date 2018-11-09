@@ -128,9 +128,9 @@ I have no explanation for this phenomenon; perhaps again some parasitic stuff is
 too comfortable relying on such behavior, so I'll stick with the resistor for now. (The no-resistor version
 had to be tinkered with when put in a ring oscillator configuration, for example).
 
-I've soldered a 3 inverter ring clock, and it was terrible, frequency around 200kHz. In the hindsight,
-this circuit has the same problem as the original one, in that it suffers from Miller capacitance.
-Why this works fine in LTSpice though, I don't know.
+I've soldered a 3 inverter ring clock, and it was terrible, frequency around 200kHz. A single inverter
+also has delay of around 1us (at input toggling from positive to ground).
+Why is there a difference between LTSpice and real circuit?
 
 ## Data tables
 
