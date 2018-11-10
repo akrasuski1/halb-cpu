@@ -129,8 +129,19 @@ too comfortable relying on such behavior, so I'll stick with the resistor for no
 had to be tinkered with when put in a ring oscillator configuration, for example).
 
 I've soldered a 3 inverter ring clock, and it was terrible, frequency around 200kHz. A single inverter
-also has delay of around 1us (at input toggling from positive to ground).
+also has delay of around 1us (at input toggling from positive to ground). This is pretty stable and depends
+mostly on collector resistor.
 Why is there a difference between LTSpice and real circuit?
+
+## Schottky DTL revisited
+
+Remember how I said diode capacitance caused all sorts of problems? Turns out it's 1N5818 that is
+weird amongst the Schottkys, and not Schottkys that are weird among the diodes. I looked around
+a few electronic catalogues and apparently the pretty cheap BATxx diodes (I chose BAT85S) have
+similar characteristics to 1N5818, except for the capacitance ranking - that is 10pF instead of
+200pF. When simulated, it has much smaller undershoot (to -0.6V at 5V/ns slope, reduced to about 
+-0.15V with more reasonable 5V/10ns slope and 10pF simulated output capacitance). I'll try
+building another frequency divider with those, seems like they could work better.
 
 ## Data tables
 
