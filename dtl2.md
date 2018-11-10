@@ -55,8 +55,9 @@ switches, with transition time roughly proportional to fan-in:
 I'm pretty sure the reason is the same, and in this case causes the slow resistor to be forced
 to charge more than one diode's worth of parasitic capacitance. The time constant
 should be: 4k7 ohm * 100pF = 470ns in case of single diode and 5 times that for 5 diodes; LTSpice
-simulates both almmost an order of magnitude smaller. This may be linked to the fact that we operate
-diodes at almost "charged" state, which has unknown to me effects on time constant. In any case,
+simulates both almost an order of magnitude smaller. This may be linked to the fact that we operate
+diodes at almost "charged" state, which has unknown to me effects on time constant; or it could
+be that we only need to get to 0.7V, not 5V. In any case,
 Schottky's seem to be a much less desirable an option now.
 
 ## Checking capacitor DTL again
@@ -140,10 +141,12 @@ weird amongst the Schottkys, and not Schottkys that are weird among the diodes. 
 a few electronic catalogues and apparently the pretty cheap BATxx diodes (I chose BAT85S) have
 similar characteristics to 1N5818, except for the capacitance ranking - that is 10pF instead of
 200pF. When simulated, it has much smaller undershoot (to -0.6V at 5V/ns slope, reduced to about 
--0.15V with more reasonable 5V/10ns slope and 10pF simulated output capacitance). I'll try
-building another frequency divider with those, seems like they could work better.
+-0.15V with more reasonable 5V/10ns slope and 10pF simulated output capacitance). They also
+have smaller delay, I'll simulate inverter chain later.
+I built another frequency divider with those, seems like they could better (at maybe 3 times
+higher frequency at the same current).
 
-Note that there is no BAT85S in LTSpice, only BAT42; but I found some library continaing BAT85
+Note that there is no BAT85S in LTSpice, only BAT42; but I found some library containing BAT85
 model, which I now use.
 
 ### Shared resistors
@@ -156,7 +159,15 @@ switching speed. One solution is to halve the resistor value in such cases (and 
 in 3-input NANDs). This may take too much current though, if only one input is grounded. The other
 solution is to bite the bullet and use two separate resistors per gate - one for base and the other
 for collector. This takes more components but is more predictable in terms of current and transition
-speed dependence on fan-in and fan-out.
+speed dependence on fan-in and fan-out. (The same issue in reverse happens when one gate drives
+two inputs of two other gates, it sees half the resistance and takes twice as much current).
+Another problem with resistor reuse is that it doesn't really respect voltage margins - logical
+0 is represented as strong pull to 0, so it shows on oscilloscope as 0V, but logical 1 is lack
+of that strong pull and possibly some residue pullup from the next gates resistors, which are
+at about 1.3V behind a diode at best, so "1" shows as around 0.6V on oscilloscope. This is annoying
+and probably not a good idea either. So perhaps I'll return to two resistors, especially that
+with BAT85S I should be able to fit it in the same hole I already use (they have thinner leads
+than bulky 1N5818).
 
 ## Data tables
 
