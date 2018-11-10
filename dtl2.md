@@ -143,6 +143,21 @@ similar characteristics to 1N5818, except for the capacitance ranking - that is 
 -0.15V with more reasonable 5V/10ns slope and 10pF simulated output capacitance). I'll try
 building another frequency divider with those, seems like they could work better.
 
+Note that there is no BAT85S in LTSpice, only BAT42; but I found some library continaing BAT85
+model, which I now use.
+
+### Shared resistors
+
+To reduce amount of soldering I have to do, I generally reuse the base resistors of one gate
+as collector resistors of the one driving it. This generally works fine, as the base doesn't take
+much current so I can ignore voltage drop from that. The only problem is that When using NAND
+of two or more inputs, the resistor is shared between those two inputs, effectively halving
+switching speed. One solution is to halve the resistor value in such cases (and reduce to third
+in 3-input NANDs). This may take too much current though, if only one input is grounded. The other
+solution is to bite the bullet and use two separate resistors per gate - one for base and the other
+for collector. This takes more components but is more predictable in terms of current and transition
+speed dependence on fan-in and fan-out.
+
 ## Data tables
 
 ### Capacitor DTL
