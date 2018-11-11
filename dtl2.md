@@ -149,6 +149,10 @@ higher frequency at the same current).
 Note that there is no BAT85S in LTSpice, only BAT42; but I found some library containing BAT85
 model, which I now use.
 
+Speed chart:
+
+![speed](images/bat_chart.png)
+
 ### Shared resistors
 
 To reduce amount of soldering I have to do, I generally reuse the base resistors of one gate
@@ -210,3 +214,17 @@ than bulky 1N5818).
 |22.0|2.0|170.0|55.0|
 |22.0|1.0|105.0|110.0|
 |22.0|0.5|75.0|215.0|
+
+### BAT85 DTL
+
+| X \[kOhm\] | Y \[kOhm\] | Delay of 24 gates \[ns\] | Current consumption of 24 gates \[mA\] |
+| ------------- | ------------- | ------------- | ------------- |
+|10.0|1.0|100.0|71.0|
+|20.0|2.0|150.0|35.0|
+|30.0|3.0|205.0|23.0|
+|47.0|4.7|295.0|15.0|
+|60.0|6.0|360.0|12.0|
+|100.0|10.0|555.0|7.0|
+|130.0|13.0|700.0|5.4|
+|200.0|20.0|1030.0|3.5|
+|300.0|30.0|1485.0|2.6|
