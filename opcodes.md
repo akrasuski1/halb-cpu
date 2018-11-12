@@ -4,6 +4,8 @@ Opcode map:
 
 ![map](images/opcode_map.png?raw=true)
 
+TODO: D6 (`MOV [0:L], L`) is useless; `MOV [0:L]`, imm would be much more useful.
+
 ## ALU2
 
 ```
