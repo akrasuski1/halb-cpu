@@ -6,6 +6,8 @@ Opcode map:
 
 TODO: D6 (`MOV [0:L], L`) is useless; `MOV [0:L], imm` would be much more useful.
 
+TODO: C6 (`MOV [0:L], H`) is pretty useless too; `MOV [0:L++], imm` would be much more useful.
+
 ## ALU2
 
 ```
