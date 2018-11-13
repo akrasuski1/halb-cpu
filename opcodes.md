@@ -10,6 +10,10 @@ TODO: C6 (`MOV [0:L], H`) is pretty useless too; `MOV [0:L], imm` would be much 
 
 TODO: Do we need all flag manipulation instructions? Other than carry, I can't see need for modifying them.
 
+TODO: Consistent register order: ABLH
+
+TODO: Two ways to `MOV R, [00:ee]`
+
 ## ALU2
 
 ```
