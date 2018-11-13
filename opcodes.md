@@ -4,9 +4,9 @@ Opcode map:
 
 ![map](images/opcode_map.png?raw=true)
 
-TODO: D6 (`MOV [0:L], L`) is useless; `MOV [0:L++], imm` would be much more useful.
+TODO: D6 (`MOV [0:L], L`) is useless; `MOV [0:L], imm` would be much more useful.
 
-TODO: C6 (`MOV [0:L], H`) is pretty useless too; `MOV [0:L], imm` would be much more useful.
+TODO: `MOV [0:L++], A/B/H/imm` would be useful.
 
 TODO: Do we need all flag manipulation instructions? Other than carry, I can't see need for modifying them.
 
