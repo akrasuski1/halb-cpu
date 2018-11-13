@@ -14,6 +14,8 @@ TODO: Consistent register order: ABLH
 
 TODO: Two ways to `MOV R, [00:ee]`
 
+Note: check if PC can be two transparent latches (for single cycle imm).
+
 ## ALU2
 
 ```
