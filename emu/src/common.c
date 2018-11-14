@@ -19,7 +19,7 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 		opcode->dst.reg = dd;
 		if (last3 <= 2) {
 			opcode->src.type = OPER_REG;
-			opcode->src.reg = (last3 == 0) ? REG_A : (last3 == 1) ? REG_B : REG_L;
+			opcode->src.reg = last3;
 			return 1;
 		}
 		else if (last3 == 3) {
@@ -41,26 +41,68 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 		opcode->src = opcode->dst;
 		return 1;
 	}
-	else if (last4 == 6 || last4 == 7) {
+	else if (last3 == 6 || last3 == 7) {
 		opcode->src.type = OPER_REG;
 		opcode->src.reg = dd;
-		if (aa == 0) {
-			opcode->dst.type = OPER_MEM_HL;
+		uint8_t first4 = op >> 4;
+		if (op == 0xaf || op == 0xef) {
+			opcode->type = OP_FLAG;
+			opcode->dst.type = OPER_FLAG;
+			opcode->dst.reg = 0;
+			opcode->dst.imm = op == 0xaf;
+			return 1;
+		}
+		else if (op == 0x3e || op == 0x36 || op == 0xa6 || 
+				op == 0xae || op == 0x3f) {
+			opcode->type = OP_RESERVED;
+			return 1;
+		}
+		else if (op == 0x2f) {
+			opcode->type = OP_ALU1;
+			opcode->dst.type = OPER_HL;
+			return 1;
+		}
+		else if (aa == 0) {
+			opcode->dst.type = last4 <= 7 ? OPER_MEM_HL : OPER_MEM_HL_PLUS;
 		}
 		else if (aa == 1) {
-			opcode->dst.type = OPER_MEM_IMM;
-			opcode->dst.imm = imm;
+			if (last4 == 6) {
+				opcode->dst.type = OPER_MEM_IMM;
+				opcode->dst.imm = imm;
+			}
+			else if (last4 == 7) {
+				if (first4 == 7) {
+					opcode->type = OP_CALL;
+					return 1;
+				}
+				else {
+					opcode->type = OP_LPM;
+					opcode->dst.type = OPER_REG;
+					opcode->dst.reg = dd;
+					opcode->src.type = OPER_MEM_HL;
+					return 2;
+				}
+			}
+			else {
+				opcode->type = OP_RESERVED;
+				return 1;
+			}
 		}
 		else if (aa == 2) {
-			opcode->dst.type = OPER_MEM_IMM_L;
+			opcode->dst.type = last4 <= 7 ? 
+				OPER_MEM_IMM_L : OPER_MEM_IMM_L_PLUS;
 			opcode->dst.imm = imm;
 		}
 		else if (aa == 3) {
-			opcode->dst.type = OPER_MEM_L;
+			opcode->dst.type = last4 <= 7 ? OPER_MEM_L : OPER_MEM_L_PLUS;
 		}
 
-		if (last4 == 6) {
+		if (last4 == 6 || last4 == 0xe) {
 			opcode->type = OP_STORE;
+			if (first4 == 2 || first4 == 0xe) {
+				opcode->src.type = OPER_IMM;
+				opcode->src.imm = imm;
+			}
 		}
 		else {
 			opcode->type = OP_LOAD;
@@ -68,6 +110,7 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 			opcode->src = opcode->dst;
 			opcode->dst = opt;
 		}
+
 		if (aa == 1 || aa == 2) {
 			return 2;
 		}
@@ -88,42 +131,24 @@ int decode(uint8_t* rom, opcode_t* opcode) {
 			return 1;
 		}
 	}
-	else if (last4 == 0xf) {
-		uint8_t first4 = op >> 4;
-		if (first4 & 8) {
-			opcode->type = OP_FLAG;
-			opcode->dst.type = OPER_FLAG;
-			opcode->dst.reg = first4 & 3;
-			opcode->dst.imm = (first4 & 4) >> 2;
-			return 1;
-		}
-		else if (first4 == 0) {
-			opcode->type = OP_CALL;
-			return 1;
-		}
-		else if (first4 <= 3) {
-			opcode->type = OP_LPM;
-			opcode->dst.type = OPER_REG;
-			opcode->dst.reg = dd;
-			opcode->src.type = OPER_MEM_HL;
-			return 2;
-		}
-	}
 	opcode->type = OP_RESERVED;
 	return 1;
 }
 
 int print_operand(operand_t* operand, char* str) {
 	switch (operand->type) {
-	case OPER_REG:       return sprintf(str, "%c", "HLAB"[operand->reg]);
+	case OPER_REG:       return sprintf(str, "%c", "ABLH"[operand->reg]);
 	case OPER_IMM:       return sprintf(str, "0x%02x", operand->imm);
 	case OPER_MEM_IMM:   return sprintf(str, "[00:%02x]", operand->imm);
 	case OPER_MEM_HL:    return sprintf(str, "[H:L]");
+	case OPER_MEM_HL_PLUS: return sprintf(str, "[H:L++]");
 	case OPER_HL:        return sprintf(str, "H:L");
 	case OPER_PCH_IMM:   return sprintf(str, "PCH:%02x", operand->imm);
 	case OPER_MEM_IMM_L: return sprintf(str, "[%02x:L]", operand->imm);
+	case OPER_MEM_IMM_L_PLUS: return sprintf(str, "[%02x:L++]", operand->imm);
 	case OPER_MEM_L:     return sprintf(str, "[00:L]");
-	case OPER_FLAG:      return sprintf(str, "%c", "ZCNV"[operand->reg]);
+	case OPER_MEM_L_PLUS: return sprintf(str, "[00:L++]");
+	case OPER_FLAG:      return sprintf(str, "%c", "CZNV"[operand->reg]);
 	default:             return sprintf(str, "???");
 	}
 }
@@ -153,7 +178,7 @@ void disassemble(opcode_t* opcode, char* str) {
 		str += print_operand(&opcode->dst, str);
 	}
 	else if (opcode->type == OP_CALL) {
-		str += sprintf(str, "CALL");
+		str += sprintf(str, "CALL H:L");
 	}
 	else if (opcode->type == OP_RESERVED) {
 		str += sprintf(str, "RESERVED");

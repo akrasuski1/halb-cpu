@@ -27,10 +27,10 @@ table {
     background-color: #ffdddd;
 }
 .res {
-    background-color: #dddddd;
+    background-color: #bbbbbb;
 }
 .misc {
-    background-color: #ffddff;
+    background-color: #ffbbff;
 }
 
 table, th, td {
@@ -48,9 +48,13 @@ table, th, td {
             cl = ' class="alu2"'
         elif i & 15 == 5:
             cl = ' class="alu1"'
-        elif i & 15 == 7:
+        elif i in [0xaf, 0xef]:
+            cl = ' class="misc"'
+        elif i in [0x36, 0xa6, 0x3e, 0x3f, 0xae]:
+            cl = ' class="res"'
+        elif (i & 15 == 7 or i & 15 == 0xf) and i >> 4 not in [4, 5, 6, 7]:
             cl = ' class="load"'
-        elif i & 15 == 6:
+        elif i & 15 == 6 or (i & 15 == 0xe and i >> 4 not in [4, 5, 6, 7]):
             cl = ' class="store"'
         elif i & 15 == 13:
             cl = ' class="jump"'

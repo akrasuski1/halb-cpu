@@ -21,11 +21,12 @@ typedef enum alu2_type {
 
 typedef enum operand_type {
 	OPER_NONE, OPER_REG, OPER_IMM, OPER_MEM_IMM, OPER_MEM_HL, OPER_MEM_IMM_L, 
-	OPER_MEM_L, OPER_PCH_IMM, OPER_HL, OPER_FLAG,
+	OPER_MEM_L, OPER_PCH_IMM, OPER_HL, OPER_FLAG, OPER_MEM_HL_PLUS,
+	OPER_MEM_IMM_L_PLUS, OPER_MEM_L_PLUS,
 } operand_type;
 
 typedef enum reg_type {
-	REG_H, REG_L, REG_A, REG_B,
+	REG_A, REG_B, REG_L, REG_H,
 } reg_type;
 
 typedef enum condition_type {
