@@ -4,19 +4,7 @@ Opcode map:
 
 ![map](images/opcode_map.png?raw=true)
 
-TODO: D6 (`MOV [0:L], L`) is useless; `MOV [0:L], imm` would be much more useful.
-
-TODO: `MOV [0:L++], A/B/H/imm` would be useful.
-
-TODO: Do we need all flag manipulation instructions? Other than carry, I can't see need for modifying them.
-
-TODO: Consistent register order: ABLH
-
-TODO: Two ways to `MOV R, [00:ee]`
-
-TODO: Actually, it should be possible to support even `[HL++]` type instructions.
-
-Note: check if PC can be two transparent latches (for single cycle imm).
+TODO: Below are outdated encodings.
 
 ## ALU2
 
