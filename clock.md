@@ -66,3 +66,29 @@ After checking it, it seems to be very sensitive on input clock frequency though
 and resistor values, it works at 1MHz, for others - 100kHz etc. Otherwise there are either
 extra unwanted oscillations, or the output stays constant the whole time. In the end, I'll
 probably stick with ordinary D flip-flops, regardless of their size, since they work more reliably.
+
+## New clock design
+
+The above design for clock is fine if we do one instruction byte per two-clock cycle. Since then
+I noticed we may squeeze in fetching immediate value too, as long as we make sure some of the phases
+are more non-overlapping than above, in order to keep hold and setup constraints for SRAM, Flash and
+our registers. We again make two non-overlapping write phases, with two other signals enveloping them:
+
+```
+W0   ''''|________________|''''|________________|''''|_______________
+W1   __________|''''|________________|''''|________________|''''|____
+G0   ''''''|____________|''''''''|____________|''''''''|_____________
+G1   ________|''''''''|____________|''''''''|____________|''''''''|__
+```
+
+Here, G0 and G1 mean: generate correct inputs to latches from phase 0/1, and W0/W1 mean: enable
+latches from phase 0/1. Whenever Wx is high (latches), so is Gx, with appropriate safety margin.
+For SRAM, address is calculated during G1 and must be done before W1 goes high. For this reason
+we skew the G0/G1 to the  left (to give more time for setup and less for hold).
+
+Generating W0 and W1 is simple enough, and done using two edge-triggered flip-flops counting
+in Grey code, as shown above. Creating G0 and G1 is harder, since they are out of phase. For
+that reason we artificially delay some signals using capacitor to ground with pullup resistor.
+The resistor is actually a potentiometer, to allow to tweak the waveform.
+
+![clock](images/clock_dual.png?raw=true)
