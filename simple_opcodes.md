@@ -17,4 +17,5 @@ by a single bit flag) will do a different thing. The first one will store both a
 register (using 6 of its bits). The second one will do the actual store to the target register.
 The immediate to be stored is just a combination of the value in `B` and current argument.
 The target register in turn can be calculated from the `0, 1, 2` part. Two of these give
-9 combinations, enough to encode 9 targets. This will require 48 of 256 opcodes.
+9 combinations, enough to encode 9 targets (like 8 registers + special mode). 
+This will require 48 of 256 opcodes.
