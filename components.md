@@ -1,7 +1,8 @@
 # Components
 
 There are a couple of components repeatedly used in this CPU, such as registers and multiplexers. They can
-have unified design to simplify production.
+have unified design to simplify production. Note: for bootstrapping, initially most components can be replaced
+with a microcontroller or a ROM chip.
 
 ## Registers
 
